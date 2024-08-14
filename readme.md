@@ -8,15 +8,12 @@ I am currently a computer science student pursuing a Bachelor's degree. I starte
 ### [Banking App](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Banking-App)
 The purpose of this project is to demonstrate the use of React, Node.js, Express and MongoDB to create a website. This was a group project done for a software engineering class with @ashiggles and @anniecroft using the name "Team Gecko". The project is a mock banking website. Some of the technical challenges of this project included establishing communications between the client and server sides and creating events for when the user hits "submit". See [Banking App](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Banking-App) for more information.
 
-
 ### [Hangman Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman)
 
 The purpose of this project was to demonstrate the use of React, Node.js, Express and MongoDB via a game of hangman. The project was worked on with @ashiggles as part of a software engineering class. Some of the technical challenges I faced with this project included keeping a list of guessed letters, checking for a win condition, and displaying a high scores table which contains scores for words of the same lengths (which required the use of sessions). [Click](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman) for more information.
 
 ### [Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow)
-I created a four-in-a-row game using React. The purpose of this project was to learn how to use React, and how a user would be able to interact with the frontend. Since this was my first React project, most of my focus was on learning how it worked. Some of the technical challenges I had to overcome included figuring out how to use React to alternate between players, check if a spot was already taken, and display X's and O's for users.
-
-
+I created a four-in-a-row game using React. The purpose of this project was to learn how to use React, and how a user would be able to interact with the frontend. Since this was my first React project, most of my focus was on learning how it worked. Some of the technical challenges I had to overcome included figuring out how to use React to alternate between players, check if a spot was already taken, and display X's and O's for users. See [Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow).
 
 ### [MERN and Sessions](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Sessions)
 
