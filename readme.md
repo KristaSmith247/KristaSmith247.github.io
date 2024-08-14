@@ -11,6 +11,8 @@ I created a four-in-a-row game using React. The purpose of this project was to l
 
 
 ### [Banking App](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Banking-App)
+The purpose of this project is to demonstrate the use of React, Node.js, Express and MongoDB to create a website. This was a group project done for a software engineering class with @ashiggles and @anniecroft using the name "Team Gecko". The project is a mock banking website, with a login page that directs to a user's account. The user may transfer money between types of accounts, make withdrawals and deposits, update their account information, and view account history. I created the login page and used sha-256 to hash passwords (no salting). I contributed to the css page. I also added in error checking on the account creation page to ensure the accounts are created with an accepted role, email, password, and an associated first and last name. I added in error checking on the account editing page to ensure the user enters the same password twice. Some of the technical challenges of this project included establishing communications between the client and server sides. 
+
 ![Screenshot 2024-08-14 112345](https://github.com/user-attachments/assets/ccbdc9df-9e4c-4891-a6c9-b8482b4d90b2)
 ![Screenshot 2024-08-14 112403](https://github.com/user-attachments/assets/7612dd74-14a6-4f81-b4ea-588e191f189f)
 
