@@ -5,7 +5,7 @@ I am currently a computer science student pursuing a Bachelor's degree. I starte
 
 ## List of Projects
 ### [Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow)
-I created a four-in-a-row game using React. The purpose of this project was to learn how to use React, and how a user would be able to interact with the frontend. Since this was my first React project, most of my focus was on learning how it worked rather than any in-depth challenges. This game allows for two players to choose spots on the board until a player gets four spots in a row. The code checks if a spot has already been filled, and doesn't allow a user to reuse the same spot. It checks for wins diagonally, vertically, and horizontally. Some of the technical challenges I had to overcome included figuring out how to use React to alternate between players. 
+I created a four-in-a-row game using React. The purpose of this project was to learn how to use React, and how a user would be able to interact with the frontend. Since this was my first React project, most of my focus was on learning how it worked. This game allows for two players to choose spots on the board until a player gets four spots in a row. The code checks if a spot has already been filled, and doesn't allow a user to reuse the same spot. It checks for wins diagonally, vertically, and horizontally. Some of the technical challenges I had to overcome included figuring out how to use React to alternate between players. 
 ![fourInARow1](https://github.com/user-attachments/assets/ebb3c109-bfb9-4e36-97a3-c5f4e6936a4b)
 
 
