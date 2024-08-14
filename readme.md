@@ -26,5 +26,4 @@ I created a four-in-a-row game using React. It allows for two players to choose 
 
 ### [Node/Express Site with File Storage](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/NodeExpressWebsite)
 
-### RESTful API
-[RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful-API)
+### [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful-API)
