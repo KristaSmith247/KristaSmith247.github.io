@@ -1,0 +1,17 @@
+/* this will contain the hangman drawing components */
+
+svg {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    width: 30vw;
+    height: 40vh;
+    transform: translate(-50%, -50%);
+}
+
+line,
+circle {
+    stroke: black;
+    stroke-width: 4;
+    fill: none;
+}
