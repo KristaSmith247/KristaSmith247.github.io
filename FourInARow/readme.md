@@ -1,3 +1,5 @@
+I created a four-in-a-row game using React. The purpose of this project was to learn how to use React, and how a user would be able to interact with the frontend. Since this was my first React project, most of my focus was on learning how it worked. Some of the technical challenges I had to overcome included figuring out how to use React to alternate between players, check if a spot was already taken, and display X's and O's for users.
+
 Features of the game include: 
 + two players
 + automatically alternates between players
