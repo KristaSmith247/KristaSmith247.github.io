@@ -6,7 +6,7 @@ I am currently a computer science student pursuing a Bachelor's degree. I starte
 ## List of Projects
 ### Four in a Row Game
 I created a four-in-a-row game using React. It allows for two players to choose spots on the board until a player gets four spots in a row. 
-###[Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow)
+### [Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow)
 
 ### Banking App
 [Banking App](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Banking-App)
