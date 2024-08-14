@@ -16,6 +16,7 @@ Features of the game include:
 + announces if there's a win or a tie
 
 ![fourInARow1](https://github.com/user-attachments/assets/ebb3c109-bfb9-4e36-97a3-c5f4e6936a4b)
+![Screenshot 2024-08-14 135545](https://github.com/user-attachments/assets/f6403bd8-fa79-49de-b7fa-e1cc7561b1e4)
 
 
 ### [Banking App](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Banking-App)
