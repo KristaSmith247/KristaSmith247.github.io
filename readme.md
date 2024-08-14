@@ -33,6 +33,9 @@ My contributions include:
 
 ![Screenshot 2024-08-14 112345](https://github.com/user-attachments/assets/ccbdc9df-9e4c-4891-a6c9-b8482b4d90b2)
 ![Screenshot 2024-08-14 112403](https://github.com/user-attachments/assets/7612dd74-14a6-4f81-b4ea-588e191f189f)
+![Screenshot 2024-08-14 112509](https://github.com/user-attachments/assets/c45e5a2d-9d92-4d58-ab69-7bd76cf9ade6)
+![Screenshot 2024-08-14 112601](https://github.com/user-attachments/assets/99f2ad8f-305b-4867-ac1e-8dc15a0d3a5c)
+![Screenshot 2024-08-14 112552](https://github.com/user-attachments/assets/cb7fa5e7-4b74-45a8-987d-3d3d59dfe5a3)
 
 
 ### [Hangman Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman)
@@ -83,5 +86,10 @@ Features of the game include:
 ### [MongoDB Example](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MongoDB%20Example)
 
 ### [Node/Express Site with File Storage](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/NodeExpressWebsite)
+
+
+
+![Screenshot 2024-08-14 162639](https://github.com/user-attachments/assets/f4eb950b-8adf-4741-a3ad-50030cc24aec)
+![Screenshot 2024-08-14 162759](https://github.com/user-attachments/assets/c21dec39-c67d-44b6-bd6c-f72df194f48c)
 
 ### [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful-API)
