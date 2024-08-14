@@ -16,9 +16,10 @@ The purpose of this project is to demonstrate the use of React, Node.js, Express
 + used sha-256 to hash passwords (no salting)
 + contributed to the css page
 + added error checking on the account creation page
-- accounts are created with an accepted role, email, password, and an associated first and last name
+  - accounts are created with an accepted role, email, password, and an associated first and last name
 + added in error checking on the account editing page
-- user enters the same password twice
+  - user enters the same password twice
+  
 Some of the technical challenges of this project included establishing communications between the client and server sides. 
 
 ![Screenshot 2024-08-14 112345](https://github.com/user-attachments/assets/ccbdc9df-9e4c-4891-a6c9-b8482b4d90b2)
