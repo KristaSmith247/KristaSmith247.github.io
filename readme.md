@@ -11,7 +11,7 @@ I created a four-in-a-row game using React. The purpose of this project was to l
 
 
 ### [Banking App](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Banking-App)
-The purpose of this project is to demonstrate the use of React, Node.js, Express and MongoDB to create a website. This was a group project done for a software engineering class with @ashiggles and @anniecroft using the name "Team Gecko". The project is a mock banking website.
+The purpose of this project is to demonstrate the use of React, Node.js, Express and MongoDB to create a website. This was a group project done for a software engineering class with @ashiggles and @anniecroft using the name "Team Gecko". The project is a mock banking website. Some of the technical challenges of this project included establishing communications between the client and server sides and creating events for when the user hits "submit".
 Overall features of the website include:
 + login page
   - account verification
@@ -35,8 +35,6 @@ My contributions include:
   - accounts are created with an accepted role, email, password, and an associated first and last name
 + added in error checking on the account editing page
   - user must enter the same password twice
-  
-Some of the technical challenges of this project included establishing communications between the client and server sides and creating events for when the user hits "submit".
 
 ![Screenshot 2024-08-14 112345](https://github.com/user-attachments/assets/ccbdc9df-9e4c-4891-a6c9-b8482b4d90b2)
 ![Screenshot 2024-08-14 112403](https://github.com/user-attachments/assets/7612dd74-14a6-4f81-b4ea-588e191f189f)
@@ -45,7 +43,19 @@ Some of the technical challenges of this project included establishing communica
 ### [Hangman Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman)
 ![Screenshot 2024-08-14 103842](https://github.com/user-attachments/assets/6ae1d389-3670-409d-b432-81c64f101cd5)
 
-
+The purpose of this project was to demonstrate the use of React, Node.js, Express and MongoDB via a game of hangman. The project was worked on with @ashiggles as part of a software engineering class. Some of the technical challenges I faced with this project included keeping a list of guessed letters, checking for a win condition, and displaying a high scores table which contains scores for words of the same lengths (which required the use of sessions).
+Features of the game include:
++ an index page which asks the user for their name
+  - the name is stored in a session and put into the high scores table if applicable
++ a hangman game
+  - displays number of letters in a word
+  - displays incorrect guessess
+  - informs user if they have already chosen a letter
+  - informs user of the word at the end of the game
++ a high scores page
+  - uses information from a database to display previous game information
+    * displays entered username, number of guesses, and word length
++ allows user to play again
 
 
 ### [MERN and Sessions](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Sessions)
