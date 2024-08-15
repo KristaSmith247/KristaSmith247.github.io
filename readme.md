@@ -30,6 +30,9 @@ I created a four-in-a-row game using React. The purpose of this project was to l
 ### [Node/Express Site with File Storage](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/NodeExpressWebsite)
 The purpose of this project was to create a basic website using Node.js and Express. This was a beginner's project to get used to working with backend information, and does not do more than the basics on the client side. Technical challenges of this project included creating a file to store user input, creating a form for user input, and working with backend routes. See  [Node/Express Site with File Storage](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/NodeExpressWebsite) for more information including features and screenshots.
 
+![Screenshot 2024-08-14 162639](https://github.com/user-attachments/assets/f4eb950b-8adf-4741-a3ad-50030cc24aec)
+![Screenshot 2024-08-14 162759](https://github.com/user-attachments/assets/c21dec39-c67d-44b6-bd6c-f72df194f48c)
+
 ### [MyExpressApp](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MyExpressApp)
 This was an assignment that focused solely on Express. It was meant to demonstrate that I could set up an environment which ran Express. It did not have any technical challenges.
 
