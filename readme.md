@@ -42,14 +42,14 @@ The purpose of this project was to create backend routes for mock bank accounts.
 ### [Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow)
 I created a four-in-a-row game using React. The purpose of this project was to learn how to use React, and how a user would be able to interact with the frontend. Technical challenges included figuring out how to use React to alternate between players, check if a spot was already taken, and display X's and O's for users. See [Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow) for more detailed information.
 
-<img src="https://github.com/user-attachments/assets/ebb3c109-bfb9-4e36-97a3-c5f4e6936a4b" width="50%"/>
-<img src="https://github.com/user-attachments/assets/f6403bd8-fa79-49de-b7fa-e1cc7561b1e4" width="50%"/>
+<img src="https://github.com/user-attachments/assets/ebb3c109-bfb9-4e36-97a3-c5f4e6936a4b" width="50%" alt="game in progress"/>
+<img src="https://github.com/user-attachments/assets/f6403bd8-fa79-49de-b7fa-e1cc7561b1e4" width="50%" alt="winning scenario"/>
 
 ### [Node/Express Site with File Storage](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/NodeExpressWebsite)
 The purpose of this project was to create a basic website using Node.js and Express. Technical challenges of this project included creating a file to store user input, creating a form for user input, and working with backend routes. See  [Node/Express Site with File Storage](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/NodeExpressWebsite) for more detailed information.
 
-<img src="https://github.com/user-attachments/assets/f4eb950b-8adf-4741-a3ad-50030cc24aec" width="50%"/>
-<img src="https://github.com/user-attachments/assets/c21dec39-c67d-44b6-bd6c-f72df194f48c" width="50%"/>
+<img src="https://github.com/user-attachments/assets/f4eb950b-8adf-4741-a3ad-50030cc24aec" width="50%" alt="user input form"/>
+<img src="https://github.com/user-attachments/assets/c21dec39-c67d-44b6-bd6c-f72df194f48c" width="50%" alt="user input display"/>
 
 ### [MyExpressApp](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MyExpressApp)
 This was an assignment that focused solely on Express. It was meant to demonstrate that I could set up an environment which ran Express. It did not have any technical challenges.
