@@ -2,7 +2,11 @@ The purpose of this project was to create backend routes for mock bank accounts.
 
 Project features:
 + MongoDB
++ Node.js
++ Express
 + create, edit, update, delete accounts using backend routes
+  - database connection
+  - must add a config.env file
 + HTTP methods
 
 <img src="https://github.com/user-attachments/assets/28da6f72-fa34-4017-a174-bb9faed234e7" width="50%" alt="project code"/>
