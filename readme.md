@@ -21,6 +21,10 @@ The purpose of this project was to demonstrate the use of React, Node.js, Expres
 ### [MERN and Sessions](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Sessions)
 This project served as an introduction to using sessions. It built on the [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API) assignment, and made a frontend for those routes. The user made view, edit, and delete accounts for a mock banking website. This was a solo project.
 
+![Screenshot 2024-08-15 094650](https://github.com/user-attachments/assets/67146850-6f8a-47e6-a4bf-f8ef0beea90a)
+
+
+
 ### [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API)
 The purpose of this project was to create backend routes for mock bank accounts. The goal was to be able to create and edit new accounts. The project utilized Node.js, Express, and MongoDB. The challenging aspects of this included figuring out how to access an individual account using an id as well as learning about the different HTTP methods and when they are best used. 
 
