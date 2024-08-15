@@ -15,6 +15,7 @@ The purpose of this project is to demonstrate the use of React, Node.js, Express
 
 The purpose of this project was to demonstrate the use of React, Node.js, Express and MongoDB via a game of hangman. The project was worked on with ashiggles as part of a software engineering class. Some of the technical challenges I faced with this project included keeping a list of guessed letters, checking for a win condition, and displaying a high scores table which contains scores for words of the same lengths (which required the use of sessions). See [Hangman Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman) for more information including features and screenshots.
 
+![Screenshot 2024-08-14 103842](https://github.com/user-attachments/assets/6ae1d389-3670-409d-b432-81c64f101cd5)
 ![Screenshot 2024-08-14 103850](https://github.com/user-attachments/assets/b5d0d5ce-efee-4ef7-a2c7-38a06c65dcbd)
 
 ### [MERN and Sessions](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Sessions)
