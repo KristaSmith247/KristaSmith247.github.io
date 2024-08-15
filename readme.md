@@ -23,4 +23,4 @@ I created a four-in-a-row game using React. The purpose of this project was to l
 The purpose of this project was to create a basic website using Node.js and Express. This was a beginner's project to get used to working with backend information, and does not do more than the basics on the client side. Technical challenges of this project included creating a file to store user input, creating a form for user input, and working with backend routes. See  [Node/Express Site with File Storage](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/NodeExpressWebsite) for more information including features and screenshots.
 
 
-### [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful-API)
+### [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API)
