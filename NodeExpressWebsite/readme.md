@@ -13,5 +13,5 @@ Features of the project include:
 + organized code
   - routes and pages in separate folders for clean layout
 
-![Screenshot 2024-08-14 162639](https://github.com/user-attachments/assets/f4eb950b-8adf-4741-a3ad-50030cc24aec)
-![Screenshot 2024-08-14 162759](https://github.com/user-attachments/assets/c21dec39-c67d-44b6-bd6c-f72df194f48c)
+<img src="https://github.com/user-attachments/assets/f4eb950b-8adf-4741-a3ad-50030cc24aec" width="50%" alt="User input form" />
+<img src="https://github.com/user-attachments/assets/c21dec39-c67d-44b6-bd6c-f72df194f48c" width="50%" alt="user answers" />
