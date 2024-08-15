@@ -54,4 +54,4 @@ The purpose of this project was to create a basic website using Node.js and Expr
 ### [MyExpressApp](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MyExpressApp)
 This was an assignment that focused solely on Express. It was meant to demonstrate that I could set up an environment which ran Express. It did not have any technical challenges.
 
-<img src="https://github.com/user-attachments/assets/9d3284f1-d6f8-43c4-a5a6-ddfca8574c58" width="50%"/>
+<img src="https://github.com/user-attachments/assets/9d3284f1-d6f8-43c4-a5a6-ddfca8574c58" width="50%"alt="Express app"/>
