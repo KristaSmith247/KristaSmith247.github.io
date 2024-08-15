@@ -24,6 +24,10 @@ This project served as an introduction to using sessions. It built on the [RESTf
 ### [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API)
 The purpose of this project was to create backend routes for mock bank accounts. The goal was to be able to create and edit new accounts. The project utilized Node.js, Express, and MongoDB. The challenging aspects of this included figuring out how to access an individual account using an id as well as learning about the different HTTP methods and when they are best used. 
 
+![Screenshot 2024-08-15 094215](https://github.com/user-attachments/assets/28da6f72-fa34-4017-a174-bb9faed234e7)
+![Screenshot 2024-08-15 094402](https://github.com/user-attachments/assets/3ae37a41-4d22-4912-bd25-eefa48130d6b)
+
+
 ### [Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow)
 I created a four-in-a-row game using React. The purpose of this project was to learn how to use React, and how a user would be able to interact with the frontend. Technical challenges included figuring out how to use React to alternate between players, check if a spot was already taken, and display X's and O's for users. See [Four In a Row Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/FourInARow) for more detailed information.
 
