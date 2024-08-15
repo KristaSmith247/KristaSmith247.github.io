@@ -18,7 +18,7 @@ The purpose of this project was to demonstrate the use of React, Node.js, Expres
 <img src="https://github.com/user-attachments/assets/6ae1d389-3670-409d-b432-81c64f101cd5" width="50%" alt="Hangman"/>
 <img src="https://github.com/user-attachments/assets/b5d0d5ce-efee-4ef7-a2c7-38a06c65dcbd" width="50%" alt="Hangman"/>
 
-### [Hello MERN]()
+### [Hello MERN](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/HelloMERN)
 The purpose of this project was to create a GitHub repository which could be accessed by other group members. The project reads a value out of a database and displays it in a React frontend. It uses Node.js, MongoDB, React, and Express. 
 
 <img src="https://github.com/user-attachments/assets/12778a09-fc7a-4cac-be99-d3faa098d12b"
