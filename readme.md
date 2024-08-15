@@ -27,7 +27,7 @@ The purpose of this project was to create a GitHub repository which could be acc
 
 
 ### [MERN and Sessions](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Sessions)
-This project served as an introduction to using sessions. It built on the [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API) assignment, and made a frontend for those routes. The user made view, edit, and delete accounts for a mock banking website. This was a solo project. See [MERN and Sessions]() for more detailed information.
+This project served as an introduction to using sessions. It built on the [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API) assignment, and made a frontend for those routes. The user made view, edit, and delete accounts for a mock banking website. This was a solo project. See [MERN and Sessions](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Sessions) for more detailed information.
 
 <img src="https://github.com/user-attachments/assets/67146850-6f8a-47e6-a4bf-f8ef0beea90a" width="50%"/>
 <img src="https://github.com/user-attachments/assets/ce548281-864a-4534-abd3-18752d365050" width="50%"/>
