@@ -2,6 +2,9 @@ The purpose of this project was to create a basic website using Node.js and Expr
 
 This was a solo project.
 
++ Node
++ Express
+
 Features of the project include:
 + HTML pages to ask for user first name, last name, favorite food
 + file storage
