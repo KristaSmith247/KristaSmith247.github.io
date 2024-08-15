@@ -8,6 +8,9 @@ I am currently a computer science student pursuing a Bachelor's degree. I starte
 ### [Banking App](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Banking-App)
 The purpose of this project is to demonstrate the use of React, Node.js, Express and MongoDB to create a website. This was a group project done for a software engineering class with ashiggles and Acroft96 using the name "Team Gecko". The project is a mock banking website. Some of the technical challenges of this project included establishing communications between the client and server sides and creating events for when the user hits "submit". See [Banking App](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Banking-App) for more information including features and screenshots.
 
+![Screenshot 2024-08-14 112345](https://github.com/user-attachments/assets/ccbdc9df-9e4c-4891-a6c9-b8482b4d90b2)
+![Screenshot 2024-08-14 112403](https://github.com/user-attachments/assets/7612dd74-14a6-4f81-b4ea-588e191f189f)
+
 ### [Hangman Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman)
 
 The purpose of this project was to demonstrate the use of React, Node.js, Express and MongoDB via a game of hangman. The project was worked on with ashiggles as part of a software engineering class. Some of the technical challenges I faced with this project included keeping a list of guessed letters, checking for a win condition, and displaying a high scores table which contains scores for words of the same lengths (which required the use of sessions). See [Hangman Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman) for more information including features and screenshots.
