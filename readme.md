@@ -27,13 +27,13 @@ The purpose of this project was to create a GitHub repository which could be acc
 
 
 ### [MERN and Sessions](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Sessions)
-This project served as an introduction to using sessions. It built on the [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API) assignment, and made a frontend for those routes. The user made view, edit, and delete accounts for a mock banking website. This was a solo project.
+This project served as an introduction to using sessions. It built on the [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API) assignment, and made a frontend for those routes. The user made view, edit, and delete accounts for a mock banking website. This was a solo project. See [MERN and Sessions]() for more detailed information.
 
 <img src="https://github.com/user-attachments/assets/67146850-6f8a-47e6-a4bf-f8ef0beea90a" width="50%"/>
 <img src="https://github.com/user-attachments/assets/ce548281-864a-4534-abd3-18752d365050" width="50%"/>
 
 ### [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API)
-The purpose of this project was to create backend routes for mock bank accounts. The goal was to be able to create and edit new accounts. The project utilized Node.js, Express, and MongoDB. The challenging aspects of this included figuring out how to access an individual account using an id as well as learning about the different HTTP methods and when they are best used. 
+The purpose of this project was to create backend routes for mock bank accounts. The goal was to be able to create and edit new accounts. The project utilized Node.js, Express, and MongoDB. The challenging aspects of this included figuring out how to access an individual account using an id as well as learning about the different HTTP methods and when they are best used. See [RESTful API](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/RESTful%20API) for more detailed information.
 
 <img src="https://github.com/user-attachments/assets/28da6f72-fa34-4017-a174-bb9faed234e7" width="50%" alt="project code"/>
 <img src="https://github.com/user-attachments/assets/3ae37a41-4d22-4912-bd25-eefa48130d6b" width="50%" alt="project code"/>
