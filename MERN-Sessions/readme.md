@@ -3,6 +3,12 @@ This project served as an introduction to using sessions. It built on the [RESTf
 Project features: 
 + MongoDB, React, Express, Node.js
 + create, edit, update, and delete accounts
+  - accepts user input for:
+    * first name
+    * last name
+    * email
+    * phone
+    * role (customer, employee, administrator)
 + display accounts
 
 <img src="https://github.com/user-attachments/assets/67146850-6f8a-47e6-a4bf-f8ef0beea90a" width="50%"/>
