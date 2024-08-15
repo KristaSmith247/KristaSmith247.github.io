@@ -1,7 +1,4 @@
 Project features:
 + MongoDB
-+ backend routes
-  - create
-  - edit
-  - delete
++ create, edit, update, delete accounts using backend routes
 + HTTP methods
