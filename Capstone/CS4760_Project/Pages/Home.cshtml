@@ -1,0 +1,171 @@
+﻿@page
+@model HomeModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (Model.AuthenticatedUser != null)
+{
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Welcome @Model.AuthenticatedUser.FirstName @Model.AuthenticatedUser.LastName!</h1>
+
+        @if (Model.AuthenticatedUser.FacultyRole == Enums.FacultyRole.Chair)
+        {
+            <div>
+                <p>Needing Approval <b>@Model.NeedsApprovalGrantList.Count</b></p>
+                <a asp-page="Grants/ApproveList" class="btn greenButton">Grant Approval</a>
+            </div>
+            <div>
+                <a asp-page="Grants/Results" class="btn yellowButton">Show Results</a>
+            </div>
+        }
+    </div>
+
+    @if (Model.AuthenticatedUser.IsAdmin)
+    {
+        <br />
+        <div>
+            <a asp-page="Admin/RSPG_Reviewers" class="btn purpleButton">RSPG Committee</a>
+        </div>
+        <br />
+        <div>
+            <a asp-page="Admin/OUR_Reviewers" class="btn purpleButton">OUR Committee</a>
+        </div>
+        <br />
+        <div>
+            <a asp-page="Admin/ARCC_Reviewers" class="btn purpleButton">ARCC Committee</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-9">
+                <!-- Submitted Grants -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="d-inline">Submitted Grants</h2>
+                    <button class="btn purpleButton ml-auto" onclick="toggleVisibility('submittedGrants')">Toggle</button>
+                </div>
+                <hr />
+                <div id="submittedGrants" style="display:none;">
+                    <div class="row">
+                        @foreach (var grant in Model.GrantList)
+                        {
+                            <div class="col-md-6">
+                                <a asp-page="Grants/Details" asp-route-id="@grant.GrantID" class="card mb-4 shadow-sm no-link-style">
+                                    <div class="card-header custom-card-header">
+                                        <h5 class="card-title mb-0">@grant.GrantTitle - @grant.GrantType</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="grant-subtype text-muted"><strong>Sub-Type:</strong> @grant.GrantSubType</p>
+                                        <p class="grant-dates">
+                                            <strong>Dates:</strong> @grant.StartDate.ToString("MM/dd/yyyy") - @grant.EndDate.ToString("MM/dd/yyyy")
+                                        </p>
+                                        <p class="grant-amount"><strong>Amount:</strong> $@grant.TotalAmount</p>
+                                        <p class="grant-isAvailableForReview">
+                                            <strong>Up for Review:</strong> @grant.IsAvailableForReview
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Reviewed Grants -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="d-inline">Reviewed Grants</h2>
+                    <button class="btn purpleButton ml-auto" onclick="toggleVisibility('reviewedGrants')">Toggle</button>
+                </div>
+                <hr />
+                <div id="reviewedGrants" style="display:none;">
+                    <div class="row">
+                        @foreach (var g in Model.ReviewedGrantList)
+                        {
+                            <div class="col-md-6">
+                                <a asp-page="Grants/Details" asp-route-id="@g.GrantID" class="card mb-4 shadow-sm no-link-style">
+                                    <div class="card-header custom-card-header">
+                                        <h5 class="card-title mb-0">@g.GrantTitle - @g.GrantType</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="grant-subtype text-muted"><strong>Sub-Type:</strong> @g.GrantSubType</p>
+                                        <p class="grant-dates">
+                                            <strong>Dates:</strong> @g.StartDate.ToString("MM/dd/yyyy") - @g.EndDate.ToString("MM/dd/yyyy")
+                                        </p>
+                                        <p class="grant-amount"><strong>Amount:</strong> $@g.TotalAmount</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Approved Grants -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="d-inline">Approved Grants</h2>
+                    <button class="btn purpleButton ml-auto" onclick="toggleVisibility('approvedGrants')">Toggle</button>
+                </div>
+                <hr />
+                <div id="approvedGrants" style="display:none;">
+                    <div class="row">
+                        @foreach (var g in Model.ApprovedGrantList)
+                        {
+                            <div class="col-md-6">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="card-header custom-card-header">
+                                        <h5 class="card-title mb-0">@g.GrantTitle - @g.GrantType</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="grant-subtype text-muted"><strong>Sub-Type:</strong> @g.GrantSubType</p>
+                                        <p class="grant-dates">
+                                            <strong>Dates:</strong> @g.StartDate.ToString("MM/dd/yyyy") - @g.EndDate.ToString("MM/dd/yyyy")
+                                        </p>
+                                        <p class="grant-amount"><strong>Amount:</strong> $@g.TotalAmount</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span><strong>Report Date:</strong> @g.ReportDate.ToString("MM/dd/yyyy")</span>
+                                            <a asp-page="Reports/Create" asp-route-id="@g.GrantID" class="btn redButton">
+                                                Report
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <h3>Deadlines</h3>
+                <hr />
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a asp-page="/Grants/Create">
+                            <p class="mb-0"><strong>OUR Application</strong></p>
+                            <p class="text-muted mb-0">Year - Round</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <h1>You are not logged in.</h1>
+    <a asp-page="/Users/Login" class="btn purpleButton">Login</a>
+    <a asp-page="/Users/Signup" class="btn button">Register</a>
+}
+
+@section Scripts {
+    <script>
+        function toggleVisibility(sectionId) {
+            var section = document.getElementById(sectionId);
+
+            if (section.style.display === "none" || section.style.display === "") {
+                section.style.display = "block";
+            } else {
+                section.style.display = "none";
+            }
+        }
+    </script>
+}

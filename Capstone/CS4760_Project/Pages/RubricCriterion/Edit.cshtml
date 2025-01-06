@@ -1,0 +1,66 @@
+﻿@page
+@model CS4760_Project.Pages.RubricCriterion.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>RubricCriteria</h4>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RubricCriteria.RubricCriteriaId" />
+            <div class="form-group col-md-8">
+                <label asp-for="RubricCriteria.Title" class="control-label"></label>
+                <input asp-for="RubricCriteria.Title" class="form-control" />
+                <span asp-validation-for="RubricCriteria.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-8">
+                <label asp-for="RubricCriteria.Description" class="control-label"></label>
+                <textarea asp-for="RubricCriteria.Description" class="form-control"></textarea>
+                <span asp-validation-for="RubricCriteria.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="RubricCriteria.Weight" class="control-label"></label>
+                <input asp-for="RubricCriteria.Weight" class="form-control" />
+                <span asp-validation-for="RubricCriteria.Weight" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <p></p>
+                <p>Criteria Range</p>
+                <div class="form-group col-md-4">
+                    <label asp-for="RubricCriteria.MinimumRange" class="control-label"></label>
+                    <input asp-for="RubricCriteria.MinimumRange" class="form-control" />
+                    <span asp-validation-for="RubricCriteria.MinimumRange" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RubricCriteria.MaximumRange" class="control-label"></label>
+                    <input asp-for="RubricCriteria.MaximumRange" class="form-control" />
+                    <span asp-validation-for="RubricCriteria.MaximumRange" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RubricCriteria.Increment" class="control-label"></label>
+                    <input asp-for="RubricCriteria.Increment" class="form-control" />
+                    <span asp-validation-for="RubricCriteria.Increment" class="text-danger"></span>
+                </div>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn purpleButton"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <p></p>
+    <a asp-page="./Index" class="btn button">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,67 @@
+﻿@page
+@model CS4760_Project.Pages.RubricCriterion.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" class="btn purpleButton">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RubricCriteria[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RubricCriteria[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RubricCriteria[0].Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RubricCriteria[0].MinimumRange)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RubricCriteria[0].MaximumRange)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RubricCriteria[0].Increment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.RubricCriteria) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinimumRange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaximumRange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Increment)
+            </td>
+            <td>
+                <div class="btn-group" role="group">
+                    <a class="btn greenButton ml-auto" asp-page="./Edit" asp-route-id="@item.RubricCriteriaId">Edit</a>
+                    <a class="btn redButton ml-auto" asp-page="./Delete" asp-route-id="@item.RubricCriteriaId">Delete</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

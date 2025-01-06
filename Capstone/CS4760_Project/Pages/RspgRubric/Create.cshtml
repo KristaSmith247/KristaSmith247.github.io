@@ -1,0 +1,370 @@
+﻿@page
+@model CS4760_Project.Pages.RspgRubric.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>RspgRubric</h4>
+<hr />
+<div class="row">
+    <div class="col-md-10">    
+        @if (Model.Grant.RequiresAnimalOrHumanSubject)
+        {
+            <div class="form-group" style="color: red; font-size:large; font-weight:bold">
+                <label asp-for="Grant.RequiresAnimalOrHumanSubject" class="control-label">
+                    This grant requires an animal or human subject.
+                </label>
+            </div>
+            <br />
+        }
+        <form method="post" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <select asp-for="RspgRubric.AreaOneName" id="FirstName" onchange="ToggleAreaOne()">
+                        <option value=""></option>
+                        <option value="Budget">Budget</option>
+                        <option value="Support">Support</option>
+                    </select>
+                    <span asp-validation-for="RspgRubric.AreaOneName" class="text-danger">@Model.AreaOneSelectionError</span>
+                    <div>
+                        <label asp-for="RspgRubric.AreaOneScore" class="control-label">Weight: 3</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.AreaOneComment" class="control-label">Comment</label>
+                    <p></p>
+                    <input asp-for="RspgRubric.AreaOneComment" id="FirstComment" class="form-control" disabled />
+                    <span asp-validation-for="RspgRubric.AreaOneComment" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.AreaOneScore" class="control-label">Score</label>
+                    <p></p>
+                    <select asp-for="RspgRubric.AreaOneScore" id="FirstScore" disabled onchange="calculateTotal()">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1.0">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2.0">2</option>
+                    </select>
+                    <span asp-validation-for="RspgRubric.AreaOneScore" class="text-danger">@Model.AreaOneScoreError</span>
+                </div>
+            </div>
+
+            <p></p>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <select asp-for="RspgRubric.AreaTwoName" id="SecondName" onchange="ToggleAreaTwo()">
+                        <option value=""></option>
+                        <option value="University or Program Reputation">University or Program Reputation</option>
+                        <option value="Innovative Teaching">Innovative Teaching</option>
+                        <option value="Community Educational Engagement">Community Educational Engagement</option>
+                    </select>
+                    <span asp-validation-for="RspgRubric.AreaTwoName" class="text-danger">@Model.AreaTwoSelectionError</span>
+                    <div>
+                        <label asp-for="RspgRubric.AreaTwoScore" class="control-label">Weight: 3</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.AreaTwoComment" class="control-label">Comment</label>
+                    <p></p>
+                    <input asp-for="RspgRubric.AreaTwoComment" id="SecondComment" class="form-control" disabled" />
+                    <span asp-validation-for="RspgRubric.AreaTwoComment" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.AreaTwoScore" class="control-label">Score</label>
+                    <p></p>
+                    <select asp-for="RspgRubric.AreaTwoScore" id="SecondScore" disabled onchange="calculateTotal()">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1.0">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2.0">2</option>
+                    </select>
+                    <span asp-validation-for="RspgRubric.AreaTwoScore" class="text-danger">@Model.AreaTwoScoreError</span>
+                </div>
+            </div>
+
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.MethodScore" class="control-label">Procedures & Methods</label>
+                    <div>
+                        <label asp-for="RspgRubric.MethodScore" class="control-label">Weight: 1</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.MethodComment" class="control-label">Comment</label>
+                    <p></p>
+                    <input asp-for="RspgRubric.MethodComment" class="form-control" />
+                    <span asp-validation-for="RspgRubric.MethodComment" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.MethodScore" class="control-label">Score</label>
+                    <p></p>
+                    <select asp-for="RspgRubric.MethodScore" id="MethodScore" onchange="calculateTotal()">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1.0">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2.0">2</option>
+                    </select>
+                    <span asp-validation-for="RspgRubric.MethodScore" class="text-danger"></span>
+                </div>
+            </div>
+
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.TimelineScore" class="control-label">Timeline & Budgetary Description</label>
+                    <div>
+                        <label asp-for="RspgRubric.TimelineScore" class="control-label">Weight: 1</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.TimelineComment" class="control-label">Comment</label>
+                    <p></p>
+                    <input asp-for="RspgRubric.TimelineComment" class="form-control" />
+                    <span asp-validation-for="RspgRubric.TimelineComment" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.TimelineScore" class="control-label">Score</label>
+                    <p></p>
+                    <select asp-for="RspgRubric.TimelineScore" id="TimelineScore" onchange="calculateTotal()">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1.0">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2.0">2</option>
+                    </select>
+                    <span asp-validation-for="RspgRubric.TimelineScore" class="text-danger"></span>
+                </div>
+            </div>
+
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.EvaluationScore" class="control-label">Evaluation & Dissemination</label>
+                    <div>
+                        <label asp-for="RspgRubric.EvaluationScore" class="control-label">Weight: 3</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.EvaluationComment" class="control-label">Comment</label>
+                    <p></p>
+                    <input asp-for="RspgRubric.EvaluationComment" class="form-control" />
+                    <span asp-validation-for="RspgRubric.EvaluationComment" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.EvaluationScore" class="control-label">Score</label>
+                    <p></p>
+                    <select asp-for="RspgRubric.EvaluationScore" id="EvaluationScore" onchange="calculateTotal()">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1.0">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2.0">2</option>
+                    </select>
+                    <span asp-validation-for="RspgRubric.EvaluationScore" class="text-danger"></span>
+                </div>
+            </div>
+
+            <p></p>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.DocumentScore" class="control-label">Evidential Documentation</label>
+                    <div>
+                        <label asp-for="RspgRubric.DocumentScore" class="control-label">Weight: 1</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.DocumentComment" class="control-label">Comment</label>
+                    <p></p>
+                    <input asp-for="RspgRubric.DocumentComment" class="form-control" />
+                    <span asp-validation-for="RspgRubric.DocumentComment" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="RspgRubric.DocumentScore" class="control-label">Score</label>
+                    <p></p>
+                    <select asp-for="RspgRubric.DocumentScore" id="DocumentScore" onchange="calculateTotal()">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1.0">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2.0">2</option>
+                    </select>
+                    <span asp-validation-for="RspgRubric.DocumentScore" class="text-danger"></span>
+                </div>
+            </div>
+
+            <p></p>
+            @if (Model.HemingwayAvailable)
+            {
+                <div class="row" id="Hemingway">
+                    <div class="form-group col-md-4">
+                        <select asp-for="SelectedHemingway" id="HemingwaySelect" onchange="ToggleHemingway()">
+                            <option value="false"></option>
+                            <option value="true">Hemingway Goals</option>
+                        </select>
+                        <div>
+                            <label asp-for="RspgRubric.HemingwayScore" class="control-label">Weight: 3</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="RspgRubric.HemingwayComment" class="control-label">Comment</label>
+                        <p></p>
+                        <input asp-for="RspgRubric.HemingwayComment" id="HemingwayComment" class="form-control" disabled="!@Model.SelectedHemingway" />
+                        <span asp-validation-for="RspgRubric.HemingwayComment" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="RspgRubric.HemingwayScore" class="control-label">Score</label>
+                        <p></p>
+                        <select asp-for="RspgRubric.HemingwayScore" id="HemingwayScore" disabled="!@Model.SelectedHemingway" onchange="calculateTotal()">
+                            <option value=""></option>
+                            <option value="0">0</option>
+                            <option value="0.5">0.5</option>
+                            <option value="1.0">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2.0">2</option>
+                        </select>
+                        <span asp-validation-for="RspgRubric.HemingwayScore" class="text-danger"></span>
+                    </div>
+                </div>
+            }
+
+            <div class="form-group col-md-2">
+                <label asp-for="RspgRubric.TotalScore" class="control-label"></label>
+                <input asp-for="RspgRubric.TotalScore" id="TotalScore" readonly class="form-control" />
+                <span asp-validation-for="RspgRubric.TotalScore" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="RspgRubric.GrantId" type="hidden" value="@Model.GrantId" />
+                <input asp-for="RspgRubric.ReviewerId" type="hidden" value="@Model.ReviewerId" />
+                <input asp-for="Review.GrantId" type="hidden" value="@Model.GrantId" />
+                <input asp-for="Review.CommitteeID" type="hidden" value="@Model.CommitteeId" />
+            </div>
+
+            <div class="form-group">
+                <p></p>
+                <input type="submit" value="Create" class="btn purpleButton" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Reviews/Create" asp-route-Id="@Model.GrantId" class="btn button">Back to Review</a>
+</div>
+
+@section Scripts {
+
+    <script>
+        window.onload = function pageLoaded() {
+            var firstForm = document.getElementById('FirstName');
+            var firstComment = document.getElementById('FirstComment');
+            var firstScore = document.getElementById('FirstScore');
+
+            var secondForm = document.getElementById('SecondName');
+            var secondComment = document.getElementById('SecondComment');
+            var secondScore = document.getElementById('SecondScore');
+
+            if (firstForm.value === "") {
+                firstComment.disabled = true;
+                firstScore.disabled = true;
+            }
+            else {
+                firstComment.disabled = false;
+                firstScore.disabled = false;
+            }
+
+            if (secondForm.value === "") {
+                secondComment.disabled = true;
+                secondScore.disabled = true;
+            }
+            else {
+                secondComment.disabled = false;
+                secondScore.disabled = false;
+            }
+        }
+
+        function ToggleAreaOne() {
+            var form = document.getElementById('FirstName');
+            var comment = document.getElementById('FirstComment');
+            var score = document.getElementById('FirstScore');
+
+            if (form.value === "") {
+                comment.disabled = true;
+                score.disabled = true;
+            }
+            else {
+                comment.disabled = false;
+                score.disabled = false;
+            }
+        }
+
+        function ToggleAreaTwo() {
+            var form = document.getElementById('SecondName');
+            var comment = document.getElementById('SecondComment');
+            var score = document.getElementById('SecondScore');
+
+            if (form.value === "") {
+                comment.disabled = true;
+                score.disabled = true;
+            }
+            else {
+                comment.disabled = false;
+                score.disabled = false;
+            }
+        }
+
+        function ToggleHemingway() {
+            var form = document.getElementById('HemingwaySelect');
+            var comment = document.getElementById('HemingwayComment');
+            var score = document.getElementById('HemingwayScore');
+
+
+            if (form.value === "") {
+                comment.disabled = true;
+                score.disabled = true;
+            }
+            else {
+                comment.disabled = false;
+                score.disabled = false;
+            }
+        }
+
+
+        function calculateTotal() {
+            const firstScore = parseFloat(document.getElementById("FirstScore").value) * 3 || 0;
+            const secondScore = parseFloat(document.getElementById("SecondScore").value) * 5 || 0;
+            const methodScore = parseFloat(document.getElementById("MethodScore").value) || 0;
+            const timelineScore = parseFloat(document.getElementById("TimelineScore").value) || 0;
+            const evaluationScore = parseFloat(document.getElementById("EvaluationScore").value) * 3 || 0;
+            const documentScore = parseFloat(document.getElementById("DocumentScore").value) || 0;
+
+            const hemingwayAvailable = @Html.Raw(Json.Serialize(Model.HemingwayAvailable));
+
+            const hemngwayScore = hemingwayAvailable ? (parseFloat(document.getElementById("HemingwayScore").value) * 3 || 0) : 0;
+
+            const totalScore = firstScore + secondScore + methodScore + timelineScore + evaluationScore + documentScore + hemngwayScore;
+            const maxScore = hemingwayAvailable ? 34 : 28;
+            const percentage = ((totalScore / maxScore) * 100).toFixed(2);
+
+
+            document.getElementById("TotalScore").value = percentage;
+        }
+
+    </script>
+
+}

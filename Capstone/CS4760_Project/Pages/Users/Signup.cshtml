@@ -1,0 +1,186 @@
+﻿@page
+@model CS4760_Project.Pages.Users.SignupModel
+@{
+    bool adminExists = Model.AdminExists;
+}
+
+<h1>Sign Up</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" required />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" required />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WNumber" class="control-label"></label>
+                <input asp-for="WNumber" class="form-control" required />
+                <span asp-validation-for="WNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IndexNum" class="control-label"></label>
+                <input asp-for="IndexNum" class="form-control" required />
+                <span asp-validation-for="IndexNum" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" type="password" class="form-control" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" required />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            @if (!adminExists)
+            {
+                <div class="form-group">
+                    <label>
+                        <input id="IsAdmin" asp-for="IsAdmin" class="form-check-input" onchange="toggleCollegeFields()" /> Admin
+                    </label>
+                    <span asp-validation-for="IsAdmin" class="text-danger"></span>
+                </div>
+            }
+
+            <div id="collegeFields">
+                <div class="form-group">
+                    <label asp-for="CollegeId" class="control-label"></label>
+                    <select id="collegeSelection" asp-for="CollegeId" class="form-control" onchange="updateDepartments()"  required>
+                        <option></option>
+                        @foreach(var college in Model.Colleges)
+                        {
+                            <option value="@college.CollegeId">@college.CollegeName</option>
+                        };
+                    </select>
+                    <span asp-validation-for="CollegeId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FacultyRole" class="control-label"></label>
+                    <select id="FacultyRole" asp-for="FacultyRole" asp-items="Model.FacultyRoles" class="form-control" onchange="toggleDepartmentFields()">
+                        <option value="">Select a Faculty Role</option>
+                    </select>
+                    <span asp-validation-for="FacultyRole" class="text-danger"></span>
+                </div>
+
+                <div id="DepartmentFields" class="form-group">
+                    <label asp-for="DepartmentId" class="control-label"></label>
+                    <select id='departmentSelection' asp-for="DepartmentId"  class="form-control" disabled="true" required>
+                        <option></option>
+                        @foreach (var dept in Model.FilteredDepartments)
+                        {
+                            <option value="@dept.DepartmentId" data-college-id="@dept.CollegeId">@dept.DepartmentName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <p></p>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn purpleButton" />
+            </div>
+
+            <p></p>
+
+            <div class="form-group">
+                <a asp-page="/Users/Login" class="btn button">Return to Login</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+
+    function updateDepartments() {
+        const selectedCollegeId = document.getElementById('collegeSelection').value;
+        const enableDepartmentDropdown = document.getElementById("departmentSelection");
+        enableDepartmentDropdown.disabled = false;
+
+        if (!selectedCollegeId) {
+            enableDepartmentDropdown.disabled = true;
+
+        }
+
+        const departmentOptions = document.getElementById("departmentSelection").options;
+
+        for (let i = 0; i < departmentOptions.length; i++) {
+            const option = departmentOptions[i];
+            const collegeId = option.getAttribute("data-college-id");
+
+            console.log('collegeId: ', collegeId)
+            // Show only departments that belong to the selected college
+            if (collegeId === selectedCollegeId) {
+                option.style.display = "block";
+            }
+            else {
+                option.style.display = "none";
+            }
+        }
+
+        // Reset department selection after filtering
+        document.getElementById("departmentSelection").value = "";
+    }
+   
+
+    function toggleCollegeFields() {
+        var isAdminChecked = document.getElementById('IsAdmin').checked; // Get IsAdmin checkbox
+        var collegeFields = document.getElementById('collegeFields'); // Get College Fields Div
+        // Hide college fields if IsAdmin is checked
+        if (isAdminChecked) {
+            collegeFields.style.display = 'none';
+        }
+        else {
+            collegeFields.style.display = 'block';
+        }
+    }
+
+    function toggleDepartmentFields() {
+        var facultyRole = document.getElementById('FacultyRole').value; // Get the selected faculty role
+        var departmentSelect = document.getElementById('DepartmentFields'); // Department Fields Div
+
+        // Hide department select if "Dean" is selected
+        if (facultyRole === 'Dean') {
+            departmentSelect.style.display = 'none';
+        } else {
+            departmentSelect.style.display = 'block';
+            departmentSelect.ariaRequired = true;
+        }
+    }
+
+    // Initial toggle based on the checkbox state
+    window.onload = function () {
+        toggleCollegeFields();
+        toggleDepartmentFields();
+    };
+</script>
