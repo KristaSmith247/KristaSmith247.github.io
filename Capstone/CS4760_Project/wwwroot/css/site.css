@@ -1,0 +1,201 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+#navigation {
+    background: #492365;
+    color: floralwhite;
+}
+
+#foot {
+    background-color: #f3f0f4;
+}
+
+.button {
+    background-color: #4a494d;
+    color: floralwhite;
+}
+
+.purpleButton {
+    background-color: #70569e;
+    color: floralwhite;
+}
+
+.greenButton {
+    background-color: #91c74f;
+}
+
+.redButton {
+    background-color: #f16357;
+}
+
+.yellowButton {
+    background-color: #efad21;
+}
+
+.same-width {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+h1 {
+    font-family: Impact;
+}
+
+div {
+    font-family: monospace;
+}
+
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+}
+
+    .form-table td,
+    .form-table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+.form-title-row {
+    background-color: #f2f2f2;
+}
+
+.cell-style {
+    padding: 12px;
+    font-size: 16px;
+}
+
+.form-input-row td input[type="text"],
+.form-input-row td input[type="number"],
+.form-title-row td input[type="text"],
+.form-title-row td input[type="number"] {
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+#new-request-form {
+    margin-top: 20px;
+}
+
+.gap-row {
+    height: 20px;
+    border: none;
+}
+
+.gap-row td {
+    border: none;
+}
+
+.btn-same-width {
+    width: 75px;
+}
+
+input[readonly] {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+.col-title {
+    width: 25%;
+}
+
+.col-score {
+    width: 12%;
+}
+
+.col-amount {
+    width: 15%; 
+}
+
+.col-received {
+    width: 15%; 
+}
+
+.col-percentage {
+    width: 18%; 
+}
+
+.col-action {
+    width: 15%;
+}
+
+.tooltip-icon {
+    cursor: pointer;
+    color: #007bff; 
+    margin-left: 5px; 
+    position: relative; 
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.custom-card-header {
+    background: #492365;
+    color: floralwhite;
+    padding-top: 1rem; /* Adjust top padding */
+    padding-bottom: 1rem; /* Adjust bottom padding */
+}
+
+.card-body p {
+    margin-bottom: 0.5rem;
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+    .list-group-item a:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
+
+.no-link-style {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent (card) */
+}
+
+    .no-link-style:hover {
+        color: inherit; /* Ensure the color doesn't change on hover */
+        text-decoration: none; /* Remove underline on hover */
+    }
+
+.btn-group {
+    display: flex;
+    gap: 10px; /* Adjust spacing between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+}
