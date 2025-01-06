@@ -1,0 +1,98 @@
+﻿@page
+@model CS4760_Project.Pages.Grants.ReviewModel
+@{
+}
+
+
+<h1>Review</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grants[0].GrantTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grants[0].GrantType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grants[0].GrantSubType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grants[0].PrincipalInvestigator)
+            </th>
+            <th>
+                Score
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            // Create a dictionary for quick lookup of reviews (filtered in the CS Side)  by their ID
+            var reviewsDict = Model.Reviews.ToDictionary(r => r.ReviewId);
+        }
+        @foreach (var item in Model.Grants)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrantTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrantType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrantSubType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrincipalInvestigator)
+                </td>
+                <td>
+                    @{
+                        // Flag to check if a score exists and stores the scores
+                        // as strings into a list of scores
+                        // based on if the reviews searched through their ids have scores
+                        var scores = item.ReviewIDs
+                        .Select(reviewId => reviewsDict.TryGetValue(reviewId, out var review) ? review.Score.ToString() : null)
+                        .Where(score => score != null)
+                        .ToList();
+
+                        // Display scores or a dash if none exist
+                        if (scores.Any())
+                        {
+                            foreach (var score in scores)
+                            {
+                                <p>@score</p>
+                            }
+                        }
+                        else
+                        {
+                            <p>-</p>
+                        }
+                    }
+                </td>
+                @{
+                    var userCommitteeId = Model.User.CommitteeId.ToString();
+                    var committeeIds = item.ReviewIDs
+                    .Select(reviewId => reviewsDict.TryGetValue(reviewId, out var review) ? review.CommitteeID.ToString() : null)
+                    .Where(id => id != null)
+                    .ToList();
+
+                    var hasUserReviewed = committeeIds.Contains(userCommitteeId);
+                }
+               
+
+                <td>
+                    @if (hasUserReviewed)
+                    {                                             
+                        <a asp-page="/Reviews/Create"  asp-route-grantId="@item.GrantID" class="btn greenButton">Edit Score</a>
+                    }
+                    else
+                    {
+                        <a asp-page="/Reviews/Create" asp-route-id="@item.GrantID" class="btn purpleButton">Review</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

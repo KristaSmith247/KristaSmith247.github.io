@@ -1,0 +1,49 @@
+﻿@page
+@model CS4760_Project.Pages.Grants.ApproveListModel
+@{
+}
+
+
+<h1>Approve</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grants[0].GrantTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grants[0].GrantType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grants[0].GrantSubType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grants[0].PrincipalInvestigator)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Grants)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrantTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrantType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrantSubType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrincipalInvestigator)
+                </td>
+                <td>
+                    <a asp-page="/Grants/Approve" asp-route-id="@item.GrantID" class="btn purpleButton">Review</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

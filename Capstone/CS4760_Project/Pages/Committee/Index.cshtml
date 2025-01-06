@@ -1,0 +1,36 @@
+﻿@page
+@model CS4760_Project.Pages.Committee.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Committee[0].GrantType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Committee) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrantType)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id" class="btn greenButton">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id" class="btn yellowButton">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id" class="btn redButton">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

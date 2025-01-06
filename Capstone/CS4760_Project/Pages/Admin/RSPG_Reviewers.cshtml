@@ -1,0 +1,158 @@
+﻿@page
+@model CS4760_Project.Pages.Admin.RSPG_ReviewersModel
+@{
+    ViewData["Title"] = "RSPG Committee";
+
+}
+<table class="table">
+    <caption>RSPG Committee Members</caption>
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">College</th>
+            <th scope="col">Department</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Users != null && Model.Users.Any())
+        {
+            @foreach (var item in Model.Users)
+            {
+                @if (item.Committee == "RSPG")
+                {
+                    <tr>
+                        <td>
+                            @item.FirstName
+                        </td>
+                        <td>
+                            @item.LastName
+                        </td>
+                        <td>
+                            @item.CollegeName
+                        </td>
+                        <td>
+                            @item.DepartmentName
+                        </td>
+                        <td>
+                            <form method="post" asp-page-handler="RemoveFromCommittee" style="display:inline">
+                                <input type="hidden" name="userId" value="@item.Id" />
+                                <button type="submit" class="btn redButton" style="border:none">Remove</button>
+
+                            </form>
+
+                        </td>
+                    </tr>
+                }
+
+            }
+        }
+
+    </tbody>
+</table>
+
+<hr />
+<div class="mb-4"></div>
+
+
+<div class="container">
+    <form method="get" id="filterForm">
+        <div>
+            <label asp-for="FirstNameFilter">First Name</label>
+            <input asp-for="FirstNameFilter" />
+            <label asp-for="LastNameFilter">Last Name</label>
+            <input asp-for="LastNameFilter" />
+            <p></p>
+        </div>
+        <div>
+            <label asp-for="CollegeFilter">College</label>
+            <select asp-for="CollegeFilter" id="colleges" onchange="submitForm()">
+                <option value="" selected></option>
+                @if (Model.Colleges != null)
+                {
+                    @foreach (var item in Model.Colleges)
+                    {
+                        <option value="@item.CollegeName">@item.CollegeName</option>
+                    }
+
+                }
+                else
+                {
+                    <option>No Colleges Available</option>
+                }
+
+            </select>
+            <label asp-for="DepartmentFilter">Department</label>
+            <select asp-for="DepartmentFilter">
+                <option value="" selected></option>
+                @foreach (var department in Model.FilteredDepartments)
+                {
+                    <option value="@department">@department</option>
+                }
+
+            </select>
+            <p></p>
+        </div>
+        <button type="submit" class="btn purpleButton" style="border:none">Filter</button>
+    </form>
+</div>
+
+<script>
+    const submitForm = () => {
+        document.getElementById("filterForm").submit();
+    }
+</script>
+
+
+<table class="table">
+    <caption>Users</caption>
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">College</th>
+            <th scope="col">Department</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*  @if (Model.User != null && Model.User.Any())
+        { *@
+        @foreach (var item in Model.Users)
+        {
+            @if (item.IsAdmin || item.CommitteeId != null)
+            {
+                continue;
+            }
+            <tr>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.CollegeName
+                </td>
+                <td>
+                    @item.DepartmentName
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="AddToCommittee" style="display:inline">
+                        <input type="hidden" name="userId" value="@item.Id" />
+                        <input type="hidden" name="fName" value="@item.FirstName" />
+                        <input type="hidden" name="lName" value="@item.LastName" />
+                        <button type="submit" class="btn purpleButton" style="border:none">Add</button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+        }
+
+        @* } *@
+
+    </tbody>
+</table>

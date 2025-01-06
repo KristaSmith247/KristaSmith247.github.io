@@ -1,0 +1,41 @@
+﻿@page
+@model CS4760_Project.Pages.Colleges.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>College</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="College.CollegeName" class="control-label"></label>
+                <input asp-for="College.CollegeName" class="form-control" />
+                <span asp-validation-for="College.CollegeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="College.Location" class="control-label"></label>
+                <input asp-for="College.Location" class="form-control" />
+                <span asp-validation-for="College.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p></p>
+                <input type="submit" value="Create" class="btn purpleButton"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <p></p>
+    <a asp-page="Index" class="btn button">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,37 @@
+﻿@page
+@model CS4760_Project.Pages.Colleges.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>College</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.College.CollegeName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.College.CollegeName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.College.DeanId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.College.DeanId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.College.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.College.Location)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.College.CollegeId" class="btn greenButton">Edit</a> |
+    <a asp-page="./Index" class="btn button">Back to List</a>
+</div>

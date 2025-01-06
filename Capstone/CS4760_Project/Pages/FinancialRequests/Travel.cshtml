@@ -1,0 +1,227 @@
+﻿@page
+@model TravelModel
+@{
+}
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2 style="margin-right: 10px;">Travel Financial Requests</h2>
+    <button id="add-request-button" onclick="toggleForm()" class="btn purpleButton">Add New Request</button>
+</div>
+
+<p></p>
+
+<form method="post" id="new-request-form" style="display: none;">
+    <table class="form-table">
+        <!-- First Row: Titles -->
+        <tr class="form-title-row">
+            <td class="cell-style">Title</td>
+            <td class="cell-style"><input type="text" asp-for="FinancialRequest.Resource1" required/></td>
+            <td class="cell-style"><input type="text" asp-for="FinancialRequest.Resource2" required/></td>
+            <td class="cell-style">RSPG</td>
+            <td class="cell-style">Total</td>
+        </tr>
+        <!-- Second Row: Input Fields -->
+        <tr class="form-input-row">
+            <td class="cell-style"><input type="text" asp-for="FinancialRequest.RequestTitle" required /></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.Resource1Amount" id="resource1-amount" oninput="calculateTotal()" /></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.Resource2Amount" id="resource2-amount" oninput="calculateTotal()" /></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.GrantAmount" id="grant-amount" oninput="calculateTotal()" /></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.Total" id="total-amount" readonly /></td>
+        </tr>
+    </table>
+
+    <p></p>
+
+    <button type="submit" class="btn purpleButton">Submit</button>
+
+    <p></p>
+</form>
+
+@if (Model.FinancialRequests.Count != null && Model.FinancialRequests.Count > 0)
+{
+    @foreach (var request in Model.FinancialRequests)
+    {
+        <form method="post" asp-page-handler="EditFinancialRequest" id="form-@request.TemporaryId">
+            <table class="form-table">
+                <tr class="form-title-row">
+                    <td class="cell-style">Title</td>
+                    <td class="cell-style">
+                        <input type="text" name="Resource1" value="@request.Resource1" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="text" name="Resource2" value="@request.Resource2" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">RSPG</td>
+                    <td class="cell-style">Total</td>
+                    <td class="cell-style">
+                        <button type="button" class="btn button btn-same-width" onclick="enableEdit(@request.TemporaryId)">Edit</button>
+                    </td>
+                </tr>
+                <tr class="form-input-row">
+                    <td class="cell-style">
+                        <input type="text" name="RequestTitle" value="@request.RequestTitle" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="number" min="0" name="Resource1Amount" value="@request.Resource1Amount" class="input-style" oninput="calculateEditTotal(@request.TemporaryId)" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="number" min="0" name="Resource2Amount" value="@request.Resource2Amount" class="input-style" oninput="calculateEditTotal(@request.TemporaryId)" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="number" min="0" name="GrantAmount" value="@request.GrantAmount" class="input-style" oninput="calculateEditTotal(@request.TemporaryId)" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="number" min="0" name="Total" value="@request.Total" class="input-style" readonly />
+                    </td>
+                    <td>
+                        <button type="submit" class="btn redButton btn-same-width" formaction="/FinancialRequests/Travel?handler=DeleteFinancialRequest">Delete</button>
+                    </td>
+                </tr>
+                <tr class="gap-row">
+                    <td colspan="5">
+                        <button type="submit" class="btn purpleButton" style="display: none;" formaction="/FinancialRequests/Travel?handler=EditFinancialRequest">Save</button>
+                        <button type="button" class="btn button" style="display: none;" id="cancel-btn-@request.TemporaryId" onclick="cancelEdit(@request.TemporaryId)">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" name="RequestId" value="@request.TemporaryId" />
+        </form>
+    }
+}
+else
+{
+    <p>No travel financial requests found.</p>
+}
+
+<a asp-page="/Grants/Create" class="btn button">Back</a>
+
+@section Scripts {
+    <script>
+        // Function to Calculate Total of Form
+        function calculateTotal()
+        {
+            let resource1Amount = parseFloat(document.getElementById("resource1-amount").value) || 0;
+            let resource2Amount = parseFloat(document.getElementById("resource2-amount").value) || 0;
+            let grantAmount = parseFloat(document.getElementById("grant-amount").value) || 0;
+
+            let total = resource1Amount + resource2Amount + grantAmount;
+
+            document.getElementById("total-amount").value = total.toFixed(2);
+        }
+
+        // Function to Calculate Total of Request Edit
+        function calculateEditTotal(requestId)
+        {
+            // Get the form by the ID
+            const form = document.getElementById('form-' + requestId);
+
+            // Retrieve the amounts from the input fields
+            const resource1Amount = parseFloat(form.querySelector('input[name="Resource1Amount"]').value) || 0;
+            const resource2Amount = parseFloat(form.querySelector('input[name="Resource2Amount"]').value) || 0;
+            const grantAmount = parseFloat(form.querySelector('input[name="GrantAmount"]').value) || 0;
+
+            // Calculate the total
+            const total = resource1Amount + resource2Amount + grantAmount;
+
+            // Update the Total field
+            form.querySelector('input[name="Total"]').value = total.toFixed(2);
+        }
+
+        // Function to toggle Form
+        function toggleForm()
+        {
+            var form = document.getElementById('new-request-form');
+            var button = document.getElementById('add-request-button');
+
+            if (form.style.display === 'none' || form.style.display === '')
+            {
+                form.style.display = 'block';
+                button.textContent = 'Hide Form';
+                button.style.backgroundColor = '#4a494d';
+                button.style.color = 'floralwhite';
+            }
+            else
+            {
+                form.style.display = 'none';
+                button.textContent = 'Add New Request';
+                button.style.backgroundColor = '#70569e';
+                button.style.color = 'floralwhite';
+            }
+        }
+
+        // Function to enable editing
+        function enableEdit(requestId)
+        {
+            // Get the form by the ID
+            const form = document.getElementById('form-' + requestId);
+
+            // Get all the input fields in the form
+            const inputs = form.querySelectorAll('input[type="text"], input[type="number"]');
+
+            // Enable all input fields
+            inputs.forEach(input => {
+                if (input.name !== "Total")
+                {  // Exclude the Total field
+                    input.removeAttribute('readonly');
+                    input.classList.add('editable');
+                }
+            });
+
+            // Show the Save and Cancel buttons, hide the Edit button
+            const saveButton = form.querySelector('button[type="submit"][formaction*="EditFinancialRequest"]');
+            if (saveButton)
+            {
+                saveButton.style.display = 'inline-block'; // Show Save button
+            }
+
+            const cancelButton = form.querySelector('#cancel-btn-' + requestId);
+            if (cancelButton)
+            {
+                cancelButton.style.display = 'inline-block'; // Show Cancel button
+            }
+
+            const editButton = form.querySelector('button[onclick^="enableEdit"]');
+            if (editButton)
+            {
+                editButton.style.display = 'none'; // Hide Edit button
+            }
+        }
+
+        function cancelEdit(requestId)
+        {
+            // Get the form by the ID
+            const form = document.getElementById('form-' + requestId);
+
+            // Reset the form to its original state
+            form.reset();
+
+            // Set all input fields back to read-only
+            const inputs = form.querySelectorAll('input[type="text"], input[type="number"]');
+            inputs.forEach(input => {
+                input.setAttribute('readonly', 'readonly');
+                input.classList.remove('editable');
+            });
+
+            // Hide the Save button
+            const saveButton = form.querySelector('button[type="submit"][formaction*="EditFinancialRequest"]');
+            if (saveButton)
+            {
+                saveButton.style.display = 'none'; // Hide Save button
+            }
+
+            // Hide the Cancel button
+            const cancelButton = form.querySelector('#cancel-btn-' + requestId);
+            if (cancelButton)
+            {
+                cancelButton.style.display = 'none'; // Hide Cancel button
+            }
+
+            // Show the Edit button
+            const editButton = form.querySelector('button[onclick^="enableEdit"]');
+            if (editButton)
+            {
+                editButton.style.display = 'inline-block'; // Show Edit button
+            }
+        }
+    </script>
+}

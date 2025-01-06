@@ -1,0 +1,305 @@
+﻿@page
+@model CS4760_Project.Pages.Grants.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- TODO: When user clicks on Financial Request card, make sure entered information stays in session before navigating away -->
+<h1>Create</h1>
+
+<h4>Grant</h4>
+<hr />
+<div class="col-md-12">
+    <div class="col-md-12">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Grant.GrantTitle" class="control-label"></label>
+                <input asp-for="Grant.GrantTitle" class="form-control" />
+                <span asp-validation-for="Grant.GrantTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grant.GrantType" class="control-label"></label>
+                <select asp-for="Grant.GrantType" asp-items="Model.GrantTypes" class="form-control" required>
+                    <option value="">Select Grant</option>
+                </select>
+                <span asp-validation-for="Grant.GrantType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grant.GrantSubType" class="control-label"></label>
+                <select id="subTypes" asp-for="Grant.GrantSubType" asp-items="Model.SubTypes" class="form-control"  onchange="updateGrantProgram()" required>
+                    <option value="">Select a RSPG Type</option>
+                </select>
+                <span asp-validation-for="Grant.GrantSubType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grant.GrantProgram" class="control-label">You are applying for:</label>
+                <select id="grantPrograms" asp-for="Grant.GrantProgram"  class="form-control" required disabled="true">
+                    <option value="">Select a Grant Program</option>
+                    @foreach (var program in Model.Programs) {
+                        <option value="@program.Id">@program.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Grant.GrantProgram" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grant.PrincipalInvestigator" class="control-label"></label>
+                <select asp-for="Grant.PrincipalInvestigator" class="form-control" required>
+                    <option value="" selected></option>
+                    @foreach (var item in Model.AllUsersDynamic)
+                    {
+                        <option value="@item.fullname">@item.fullname</option>
+                    }
+                </select>
+                <span asp-validation-for="Grant.PrincipalInvestigator" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grant.GrantCollegeID" class="control-label"></label>
+                <select asp-for="Grant.GrantCollegeID" asp-items="Model.Colleges" class="form-control" required>
+                    <option value="">Select a College</option>
+                </select>
+                <span asp-validation-for="Grant.GrantCollegeID" class="text-danger"></span>
+            </div>
+            <div id="DepartmentFields" class="form-group">
+                <label asp-for="Grant.GrantDepartmentID" class="control-label"></label>
+                <select asp-for="Grant.GrantDepartmentID" asp-items="Model.Departments" class="form-control" required>
+                    <option value="">Select a Department</option>
+                </select>
+                <span asp-validation-for="Grant.GrantDepartmentID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grant.IsUndergraduate" class="control-label"></label>
+                <div>
+                    <input asp-for="Grant.IsUndergraduate" type="checkbox" class="form-check-input" />
+                    <span asp-validation-for="Grant.IsUndergraduate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grant.MailCode" class="control-label"></label>
+                <input asp-for="Grant.MailCode" class="form-control" />
+                <span asp-validation-for="Grant.MailCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.StartDate" class="control-label"></label>
+                <input asp-for="Grant.StartDate" class="form-control" type="date" />
+                <span asp-validation-for="Grant.StartDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.EndDate" class="control-label"></label>
+                <input asp-for="Grant.EndDate" class="form-control" type="date" />
+                <span asp-validation-for="Grant.EndDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.Year" class="control-label"></label>
+                <input asp-for="Grant.Year" class="form-control" type="number" min="2024" />
+                <span asp-validation-for="Grant.Year" class="text-danger"></span>
+            </div>
+
+            <input asp-for="Grant.IsApproved" type="hidden" value="false" />
+            <input asp-for="Grant.IsRejected" type="hidden" value="false" />
+            <input asp-for="Grant.AmountReceived" type="hidden" value="0" />
+
+            <p></p>
+
+            <div>
+                <p class="h5 mb-3">Financial Requests</p>
+
+                <div class="row">
+                    <!-- Personal Resources Card -->
+                    <div class="col-md-6 mb-4">
+                        <a asp-page="/FinancialRequests/PersonalResources" class="text-decoration-none">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-secondary text-white">
+                                    Personal Resources
+                                </div>
+                                <div class="card-body text-dark">
+                                    <p><strong>RSPG Amount:</strong> @Model.PersonalResourceRSPGAmount</p>
+                                    <p><strong>Available Amount:</strong> @Model.PersonalResourceAvailableAmount</p>
+                                    <p><strong>Total Amount:</strong> @Model.PersonalResourceTotalAmount</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Equipment Card -->
+                    <div class="col-md-6 mb-4">
+                        <a asp-page="/FinancialRequests/Equipment" class="text-decoration-none">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-secondary text-white">
+                                    Equipment
+                                </div>
+                                <div class="card-body text-dark">
+                                    <p><strong>RSPG Amount:</strong> @Model.EquipmentRSPGAmount</p>
+                                    <p><strong>Available Amount:</strong> @Model.EquipmentAvailableAmount</p>
+                                    <p><strong>Total Amount:</strong> @Model.EquipmentTotalAmount</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Travel Card -->
+                    <div class="col-md-6 mb-4">
+                        <a asp-page="/FinancialRequests/Travel" class="text-decoration-none">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-secondary text-white">
+                                    Travel
+                                </div>
+                                <div class="card-body text-dark">
+                                    <p><strong>RSPG Amount:</strong> @Model.TravelRSPGAmount</p>
+                                    <p><strong>Available Amount:</strong> @Model.TravelAvailableAmount</p>
+                                    <p><strong>Total Amount:</strong> @Model.TravelTotalAmount</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Other Requests Card -->
+                    <div class="col-md-6 mb-4">
+                        <a asp-page="/FinancialRequests/Other" class="text-decoration-none">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-secondary text-white">
+                                    Other
+                                </div>
+                                <div class="card-body text-dark">
+                                    <p><strong>RSPG Amount:</strong> @Model.OtherRSPGAmount</p>
+                                    <p><strong>Available Amount:</strong> @Model.OtherAvailableAmount</p>
+                                    <p><strong>Total Amount:</strong> @Model.OtherTotalAmount</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.RSPGAmount" class="control-label"></label>
+                <input asp-for="Grant.RSPGAmount" class="form-control" readonly="readonly" value="@Model.RSPGAmount" />
+                <span asp-validation-for="Grant.RSPGAmount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.AvailableAmount" class="control-label"></label>
+                <input asp-for="Grant.AvailableAmount" class="form-control" readonly="readonly" value="@Model.AvailableAmount" />
+                <span asp-validation-for="Grant.AvailableAmount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.TotalAmount" class="control-label"></label>
+                <input asp-for="Grant.TotalAmount" class="form-control" readonly="readonly" value="@Model.TotalAmount" />
+                <span asp-validation-for="Grant.TotalAmount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.Description" class="control-label"></label>
+                <textarea name="Grant.Description" class="form-control"></textarea>
+                <span asp-validation-for="Grant.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.ProcedureAndMethod" class="control-label"></label>
+                <textarea asp-for="Grant.ProcedureAndMethod" class="form-control"></textarea>
+                <span asp-validation-for="Grant.ProcedureAndMethod" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Grant.Timeline" class="control-label"></label>
+                <textarea asp-for="Grant.Timeline" class="form-control"></textarea>
+                <span asp-validation-for="Grant.Timeline" class="text-danger"></span>
+            </div>
+            <br />
+            <label class="control-label">Will this require an animal or human subject?</label>
+            <input type="checkbox" onchange="showExtraFile()" asp-for="Grant.RequiresAnimalOrHumanSubject" />
+            <br />
+            <div class="form-group">
+                <br />
+                <label asp-for="UploadedFile" class="control-label">File Upload: </label>
+                <p>Accepted files: .pdf, .txt, .docx</p>
+
+                <div id="requires-subject" style="display:none">
+                    <label asp-for="UploadedFile" class="control-label">Institutional Review Board File</label>
+                    <input required asp-for="UploadedFile" class="form-control" type="file" id="fileInput4" accept=".pdf, .txt, .docx" />
+                    <span class=></span>
+                </div>
+                <br />
+                <input asp-for="UploadedFile" class="form-control" type="file" id="fileInput1" accept=".pdf, .txt, .docx"/>
+                <span class=></span>
+                <input asp-for="UploadedFile" class="form-control" type="file" id="fileInput2" accept=".pdf, .txt, .docx"/>
+                <span class=></span>
+                <input asp-for="UploadedFile" class="form-control" type="file" id="fileInput3" accept=".pdf, .txt, .docx" />
+                <span class=></span>
+            </div>
+
+            <br />          
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn purpleButton"/>
+                <label asp-for="Grant.IsAvailableForReview" class="control-label"></label>
+                    <input asp-for="Grant.IsAvailableForReview" type="checkbox" class="form-check-input" />
+                    <span asp-validation-for="Grant.IsAvailableForReview" class="text-danger"></span> 
+            </div>
+          
+        </form>
+    </div>
+</div>
+
+
+<p></p>
+
+<div>
+    <a asp-page="Index" class="btn button">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+
+        function updateGrantProgram() {
+            const grantSubtypeElem = document.getElementById("subTypes");
+            const programSelection = document.getElementById("grantPrograms");
+
+            const grantSubTypeVal = grantSubtypeElem.value;
+
+            const programOptions = Array.from(programSelection.options)
+
+            if (!grantSubTypeVal) {
+                programSelection.disabled = true;
+            }
+            else {
+                programSelection.disabled = false;
+            }
+
+            programOptions.forEach(option => {
+
+                if (grantSubTypeVal === "Fall" && (option.value === "Hemingway Collaborative Awards" || option.value === "Hemingway Excellence Awards")) {
+                    option.style.display = 'none'
+                }
+                else {
+                    option.style.display = 'block'
+                }
+            })
+           
+        }
+
+        function showExtraFile()
+        {
+            var div = document.getElementById('requires-subject');
+            if (div.style.display === 'none' || div.style.display === '')
+            {
+                div.style.display = 'block';
+                document.getElementById("fileInput4").required = true;
+            }
+            else
+            {
+                div.style.display = 'none';
+                document.getElementById("fileInput4").required = false;
+            }
+        }
+    </script>
+}
+

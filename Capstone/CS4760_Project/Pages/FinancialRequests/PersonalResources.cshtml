@@ -1,0 +1,249 @@
+﻿@page
+@model PersonalResourcesModel
+@{
+}
+
+<style>
+    .checkbox-readonly {
+        pointer-events: none; /* Disable pointer events */
+        opacity: 0.5; /* Make it look disabled */
+    }
+</style>
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2 style="margin-right: 10px;">Personal Resource Financial Requests</h2>
+    <button id="add-request-button" onclick="toggleForm()" class="btn purpleButton">Add New Request</button>
+</div>
+
+<p></p>
+
+<form method="post" id="new-request-form" style="display: none;">
+    <table class="form-table">
+        <!-- First Row: Titles -->
+        <tr class="form-title-row">
+            <td class="cell-style">IsStudent</td> <!-- Checkbox for IsStudent -->
+            <td class="cell-style">Title</td>
+            <td class="cell-style"><input type="text" asp-for="FinancialRequest.Resource1" required/></td>
+            <td class="cell-style"><input type="text" asp-for="FinancialRequest.Resource2" required/></td>
+            <td class="cell-style">RSPG</td>
+            <td class="cell-style">Total</td>
+            <td class="cell-style">Total With Taxes</td>
+        </tr>
+        <!-- Second Row: Input Fields -->
+        <tr class="form-input-row">
+            <td class="cell-style" style="text-align: center;">
+                <input type="checkbox" asp-for="FinancialRequest.IsStudent" id="is-student" onchange="calculateTotal()" />
+            </td> <!-- Checkbox field -->
+            <td class="cell-style"><input type="text" asp-for="FinancialRequest.RequestTitle" required/></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.Resource1Amount" id="resource1-amount" oninput="calculateTotal()" /></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.Resource2Amount" id="resource2-amount" oninput="calculateTotal()" /></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.GrantAmount" id="grant-amount" oninput="calculateTotal()" /></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.Total" id="total-amount" readonly /></td>
+            <td class="cell-style"><input type="number" min="0" asp-for="FinancialRequest.TotalWithTaxes" id="total-with-taxes" readonly /></td>
+        </tr>
+    </table>
+
+    <p></p>
+
+    <button type="submit" class="btn purpleButton">Submit</button>
+
+    <p></p>
+</form>
+
+@if (Model.FinancialRequests.Count != null && Model.FinancialRequests.Count > 0)
+{
+    @foreach (var request in Model.FinancialRequests)
+    {
+<form method="post" asp-page-handler="EditFinancialRequest" id="form-@request.TemporaryId">
+    <table class="form-table">
+        <tr class="form-title-row">
+            <td class="cell-style">IsStudent</td>
+            <td class="cell-style">Title</td>
+            <td class="cell-style">
+                <input type="text" name="Resource1" value="@request.Resource1" class="input-style" readonly />
+            </td>
+            <td class="cell-style">
+                <input type="text" name="Resource2" value="@request.Resource2" class="input-style" readonly />
+            </td>
+            <td class="cell-style">RSPG</td>
+            <td class="cell-style">Total</td>
+            <td class="cell-style">Total With Taxes</td>
+            <td class="cell-style">
+                <button type="button" class="btn button btn-same-width" onclick="enableEdit('@request.TemporaryId')">Edit</button>
+            </td>
+        </tr>
+        <tr class="form-input-row">
+            <td class="cell-style" style="text-align: center;">
+                <input type="checkbox" name="StudentCheckbox" class="input-style checkbox-readonly" @(request.IsStudent ? "checked" : "") oninput="calculateEditTotal('@request.TemporaryId'); toggleHiddenInput('@request.TemporaryId')"/>
+            </td>
+            <td class="cell-style">
+                <input type="text" name="RequestTitle" value="@request.RequestTitle" class="input-style" readonly />
+            </td>
+            <td class="cell-style">
+                <input type="number" min="0" name="Resource1Amount" value="@request.Resource1Amount" class="input-style" readonly oninput="calculateEditTotal('@request.TemporaryId')" />
+            </td>
+            <td class="cell-style">
+                <input type="number" min="0" name="Resource2Amount" value="@request.Resource2Amount" class="input-style" readonly oninput="calculateEditTotal('@request.TemporaryId')" />
+            </td>
+            <td class="cell-style">
+                <input type="number" min="0" name="GrantAmount" value="@request.GrantAmount" class="input-style" readonly oninput="calculateEditTotal('@request.TemporaryId')" />
+            </td>
+            <td class="cell-style">
+                <input type="number" min="0" name="Total" value="@request.Total" class="input-style" readonly />
+            </td>
+            <td class="cell-style">
+                <input type="number" min="0" step="0.01" name="TotalWithTaxes" value="@request.TotalWithTaxes" class="input-style" readonly />
+            </td>
+            <td>
+                <button type="submit" class="btn redButton btn-same-width" formaction="/FinancialRequests/PersonalResources?handler=DeleteFinancialRequest">Delete</button>
+            </td>
+        </tr>
+        <tr class="gap-row">
+            <td colspan="5">
+                        <button type="submit" class="btn purpleButton" style="display: none;" id="save-btn-@request.TemporaryId" formaction="/FinancialRequests/PersonalResources?handler=EditFinancialRequest">Save</button>
+                        <button type="button" class="btn button" style="display: none;" id="cancel-btn-@request.TemporaryId" onclick="cancelEdit('@request.TemporaryId')">Cancel</button>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="RequestId" value="@request.TemporaryId" />
+    <input type="hidden" name="IsStudent" id="hiddenStudentCheckbox-@request.TemporaryId" value="False" /> <input type="hidden" name="StudentCheckbox" id="hiddenStudentCheckbox-@request.TemporaryId" />
+</form>
+    }
+}
+else
+{
+    <p>No personal resource financial requests found.</p>
+}
+
+
+<a asp-page="/Grants/Create" class="btn button">Back</a>
+
+@section Scripts {
+    <script>
+        // Function to Calculate Total of Form
+        function calculateTotal() 
+        {
+            const resource1Amount = parseFloat(document.getElementById("resource1-amount").value) || 0;
+            const resource2Amount = parseFloat(document.getElementById("resource2-amount").value) || 0;
+            const grantAmount = parseFloat(document.getElementById("grant-amount").value) || 0;
+
+            const total = resource1Amount + resource2Amount + grantAmount;
+
+            // Check if the applicant is a student
+            const isStudent = document.getElementById("is-student").checked;
+
+            // Calculate tax based on student status
+            const taxRate = isStudent ? 0.085 : 0.22;
+            const taxAmount = total * taxRate;
+            const totalWithTaxes = total + taxAmount;
+
+            document.getElementById("total-amount").value = total.toFixed(2);
+            document.getElementById("total-with-taxes").value = totalWithTaxes.toFixed(2); // Total + Taxes
+        }
+
+        function calculateEditTotal(tempId) 
+        {
+            const form = document.getElementById(`form-${tempId}`);
+            const resource1Amount = parseFloat(form.querySelector('input[name="Resource1Amount"]').value) || 0;
+            const resource2Amount = parseFloat(form.querySelector('input[name="Resource2Amount"]').value) || 0;
+            const grantAmount = parseFloat(form.querySelector('input[name="GrantAmount"]').value) || 0;
+
+            const total = resource1Amount + resource2Amount + grantAmount;
+
+            // Update the Total field
+            form.querySelector('input[name="Total"]').value = total;
+
+            // Optional: Update the Total With Taxes field based on the checkbox state
+            const isStudent = form.querySelector('input[name="StudentCheckbox"]').checked;
+            const taxRate = isStudent ? 0.085 : 0.22; // 8.5% for students, 22% for non-students
+            const totalWithTaxes = total + (total * taxRate);
+            form.querySelector('input[name="TotalWithTaxes"]').value = totalWithTaxes.toFixed(2);
+        }
+
+        // Function to toggle Form
+        function toggleForm(){
+            var form = document.getElementById('new-request-form');
+            var button = document.getElementById('add-request-button');
+
+            if (form.style.display === 'none' || form.style.display === '') {
+                form.style.display = 'block';
+                button.textContent = 'Hide Form';
+                button.style.backgroundColor = '#4a494d';
+                button.style.color = 'floralwhite';
+            } else {
+                form.style.display = 'none';
+                button.textContent = 'Add New Request';
+                button.style.backgroundColor = '#70569e';
+                button.style.color = 'floralwhite';
+            }
+        }
+
+       function enableEdit(tempId) 
+       {
+            // Select the form and its fields
+            const form = document.getElementById(`form-${tempId}`);
+            const inputs = form.querySelectorAll('input[type="text"], input[type="number"]');
+        
+            // Remove readonly attribute and show buttons
+            inputs.forEach(input => {
+                if (input.name !== 'Total' && input.name !== 'TotalWithTaxes') {
+                    input.removeAttribute('readonly');
+                }
+            });
+
+            // Remove readonly class from the checkbox
+            const checkbox = form.querySelector('input[name="StudentCheckbox"]');
+            checkbox.classList.remove('checkbox-readonly');
+            checkbox.disabled = false; // Enable checkbox
+
+            // Show Save and Cancel buttons
+            document.getElementById(`save-btn-${tempId}`).style.display = 'inline-block';
+            document.getElementById(`cancel-btn-${tempId}`).style.display = 'inline-block';
+
+            // Hide Edit button
+            form.querySelector('button.btn-secondary').style.display = 'none';
+        }
+
+        function cancelEdit(tempId) 
+        {
+            // Select the form and its fields
+            const form = document.getElementById(`form-${tempId}`);
+            const inputs = form.querySelectorAll('input[type="text"], input[type="number"]');
+
+            form.reset()
+
+            // Restore readonly attribute
+            inputs.forEach(input => {
+                if (input.name !== 'Total' && input.name !== 'TotalWithTaxes') {
+                    input.setAttribute('readonly', 'readonly');
+                }
+            });
+
+            // Reset checkbox to readonly
+            const checkbox = form.querySelector('input[name="StudentCheckbox"]');
+            checkbox.classList.add('checkbox-readonly');
+            checkbox.checked = false; // Optional: uncheck the checkbox
+            checkbox.disabled = true; // Disable checkbox
+
+            // Hide Save and Cancel buttons
+            document.getElementById(`save-btn-${tempId}`).style.display = 'none';
+            document.getElementById(`cancel-btn-${tempId}`).style.display = 'none';
+
+            // Show Edit button
+            form.querySelector('button.btn-secondary').style.display = 'inline-block';
+        }
+
+        function toggleHiddenInput(tempId) 
+        {
+            const checkbox = document.querySelector(`#form-${tempId} input[name="StudentCheckbox"]`);
+            const hiddenInput = document.querySelector(`#hiddenStudentCheckbox-${tempId}`);
+    
+            // Check the checkbox value
+            if (checkbox.checked) { // Ensure checkbox.value is a string
+                hiddenInput.value = 'true'; // or 'true', based on your backend requirement
+            } else {
+                hiddenInput.value = 'false'; // or 'false'
+            }
+        }
+    </script>
+}

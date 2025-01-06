@@ -1,0 +1,55 @@
+﻿@page
+@model CS4760_Project.Pages.Departments.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Departments</h1>
+ <p>
+     <a asp-page="./Create" class="btn purpleButton">Add department</a>
+ </p>
+  <table class="table">
+      <thead>
+          <tr>
+              <th>
+                  @Html.DisplayNameFor(model => model.Department[0].DepartmentName)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.Department[0].DepartmentChair)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.Department[0].DepartmentLocation)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.Department[0].College)
+              </th>
+              <th></th>
+         </tr>
+     </thead>
+     <tbody>
+ @foreach (var item in Model.Department) {
+         <tr>
+             <td>
+                 @Html.DisplayFor(modelItem => item.DepartmentName)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.DepartmentChair)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.DepartmentLocation)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.College)
+             </td>
+             <td>
+                <div class="btn-group" role="group">
+                    <a asp-page="./Edit" asp-route-id="@item.DepartmentId" class="btn greenButton btn-same-width">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.DepartmentId" class="btn yellowButton btn-same-width">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.DepartmentId" class="btn redButton btn-same-width">Delete</a>
+                </div>
+             </td>
+         </tr>
+ }
+     </tbody>
+ </table>

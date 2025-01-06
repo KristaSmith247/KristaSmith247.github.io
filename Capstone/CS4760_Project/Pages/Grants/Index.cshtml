@@ -1,0 +1,86 @@
+﻿@page
+@model CS4760_Project.Pages.Grants.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+    <p>
+        <a asp-page="Create" class="btn purpleButton">Create New</a>
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].GrantTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].GrantType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].GrantSubType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].PrincipalInvestigator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].RSPGAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].AvailableAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grant[0].IsAvailableForReview)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Grant) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrantTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrantType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrantSubType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrincipalInvestigator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RSPGAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailableForReview)
+            </td>
+            <td>
+                <div class="btn-group" role="group">
+                    <a asp-page="./Edit" asp-route-id="@item.GrantID" class="btn greenButton btn-same-width">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.GrantID" class="btn yellowButton btn-same-width">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.GrantID" class="btn redButton btn-same-width">Delete</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,67 @@
+﻿@page
+@model CS4760_Project.Pages.Grants.ResultDetailsModel
+
+@{
+    ViewData["Title"] = "Grant Result Details";
+}
+
+
+<h2>@Model.Grant.GrantTitle</h2>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h3>Committee Reviews</h3>
+
+    <div>
+        <label>
+            <input type="checkbox" id="anonymousCheckbox" onclick="toggleAnonymous()"> Make Anonymous
+        </label>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Committee Member</th>
+            <th>Review Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CommitteeReview)
+        {
+            <tr>
+                <td class="committee-member-name">@item.Key.FirstName @item.Key.LastName</td>
+                <td>@item.Value.Score %</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        function toggleAnonymous() {
+            const isChecked = document.getElementById('anonymousCheckbox').checked;
+            const names = document.querySelectorAll('.committee-member-name');
+
+            names.forEach(name => {
+                if (isChecked) {
+                    name.textContent = 'Anonymous';
+                } else {
+                    name.textContent = name.dataset.originalName;
+                }
+            });
+
+            localStorage.setItem('isAnonymousChecked', isChecked);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const names = document.querySelectorAll('.committee-member-name');
+            names.forEach(name => {
+                name.dataset.originalName = name.textContent;
+            });
+
+            const isAnonymousChecked = localStorage.getItem('isAnonymousChecked') === 'true';
+            document.getElementById('anonymousCheckbox').checked = isAnonymousChecked;
+            toggleAnonymous();
+        });
+    </script>
+}

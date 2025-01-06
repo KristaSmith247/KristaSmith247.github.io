@@ -1,0 +1,75 @@
+﻿@page
+@model CS4760_Project.Pages.Departments.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Department</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Department.DepartmentName" class="control-label"></label>
+                <input asp-for="Department.DepartmentName" class="form-control" />
+                <span asp-validation-for="Department.DepartmentName" class="text-danger"></span>
+            </div>
+            <!-- TODO: This should select from users whose Faculty Roles are chairs -->
+            <div class="form-group">
+                <label asp-for="Department.DepartmentChair" class="control-label"></label>
+                <input asp-for="Department.DepartmentChair" class="form-control" />
+                <span asp-validation-for="Department.DepartmentChair" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department.DepartmentLocation" class="control-label"></label>
+                <input asp-for="Department.DepartmentLocation" class="form-control" />
+                <span asp-validation-for="Department.DepartmentLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department.CollegeId" class="control-label"></label>
+                <select id="collegeDropdown" asp-for="Department.CollegeId" class="form-control" onchange="setCollegeForDepartment()" required>
+                    <option></option>
+                    @foreach(var college in Model.Colleges)
+                    {
+                        <option value="@college.CollegeName">@college.CollegeName</option>
+                    }
+                </select>
+                <span asp-validation-for="Department.College" class="text-danger"></span>
+            </div>
+            <input id="deptCollege" type="hidden" asp-for="Department.College" required />
+
+            <p></p>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn purpleButton"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p></p>
+
+<div>
+    <a asp-page="./Index" class="btn button">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+
+    const setCollegeForDepartment = () => {
+
+        const college = document.const college = document.getElementById("collegeDropdown").options[collegeDropdown.selectedIndex].text;
+        console.log("Value:", college)
+        const departmentCollege = document.getElementById('deptCollege');
+        departmentCollege.value = college;
+    }
+
+</script>

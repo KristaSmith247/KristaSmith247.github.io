@@ -1,0 +1,60 @@
+﻿@page
+@model CS4760_Project.Pages.FinancialRequests.EquipmentDetailsModel
+@{
+}
+
+@if (Model.FinancialRequests.Count != null && Model.FinancialRequests.Count > 0)
+{
+    @foreach (var request in Model.FinancialRequests)
+    {
+        <form method="post" asp-page-handler="EditFinancialRequest" id="form-@request.TemporaryId">
+            <table class="form-table">
+                <tr class="form-title-row">
+                    <td class="cell-style">Title</td>
+                    <td class="cell-style">
+                        <input type="text" name="Resource1" value="@request.Resource1" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="text" name="Resource2" value="@request.Resource2" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">RSPG</td>
+                    <td class="cell-style">Total</td>
+                </tr>
+                <tr class="form-input-row">
+                    <td class="cell-style">
+                        <input type="text" name="RequestTitle" value="@request.RequestTitle" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="number" name="Resource1Amount" value="@request.Resource1Amount" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="number" name="Resource2Amount" value="@request.Resource2Amount" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="number" name="GrantAmount" value="@request.GrantAmount" class="input-style" readonly />
+                    </td>
+                    <td class="cell-style">
+                        <input type="number" name="Total" value="@request.Total" class="input-style" readonly />
+                    </td>
+                </tr>
+                <tr class="gap-row">
+                    <td colspan="5"></td>
+                </tr>
+            </table>
+            <input type="hidden" name="RequestId" value="@request.TemporaryId" />
+        </form>
+    }
+}
+else
+{
+    <p>No equipment financial requests found.</p>
+}
+
+@if (Model.Source == "Grant")
+{
+    <a asp-page="/Grants/Details" asp-route-id="@Model.Grant.GrantID" class="btn button">Back</a>
+}
+else
+{
+    <a asp-page="/Reviews/Create" asp-route-id="@Model.Grant.GrantID" class="btn button">Back</a>
+}

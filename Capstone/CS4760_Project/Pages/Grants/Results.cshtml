@@ -1,0 +1,304 @@
+﻿@page
+@model CS4760_Project.Pages.Grants.ResultsModel
+
+@{
+	ViewData["Title"] = "Results";
+}
+
+<div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
+	<h1>Results</h1>
+	<h3>Available RSPG: @Model.RSPGAvailableAmount</h3>
+</div>
+
+@if (ModelState.ContainsKey("CriteriaOverlap"))
+{
+	<div class="alert alert-danger" role="alert">
+		@ModelState["CriteriaOverlap"].Errors.First().ErrorMessage
+	</div>
+}
+
+<div class="form-container" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+	<form method="post" asp-page-handler="ApplyCutoff" style="display: flex; align-items: center;">
+		<label for="cutoff" style="margin-right: 15px; font-weight: bold;">Enter Cutoff Percentage:</label>
+		<input type="number" name="cutoff" min="0" max="100" step="0.01" style="margin-right: 15px; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;" placeholder="0.00" />
+		<input type="submit" value="Apply" class="btn redButton" style="padding: 8px 12px; border-radius: 4px;" />
+	</form>
+
+	<div style="display: flex; align-items: center; margin-left: auto;">
+		<button type="button" id="addCriteriaButton" class="btn purpleButton" onclick="toggleCriteriaForm()" style="padding: 8px 12px; border-radius: 4px; margin-right: 5px;">Add Criteria</button>
+		<button type="button"
+				id="toggleButton"
+				class="btn button"
+				onclick="toggleCriteriaTable()"
+				style="padding: 8px 12px; border-radius: 4px; border: none; margin-right: 5px; cursor: pointer;">
+			Show Criteria
+		</button>
+		<form method="post" asp-page-handler="Reset">
+			<input type="submit" value="Reset" class="btn redButton" style="padding: 8px 12px; border-radius: 4px;" />
+		</form>
+		<form method="post" asp-page-handler="GenerateSpreadsheet">
+			<input type="submit" value="Spreadsheet" class="btn greenButton" style="padding: 8px 12px; border-radius: 4px;" />
+		</form>
+	</div>
+</div>
+
+<div id="criteriaForm" style="display: none;">
+	<div class="card mb-4">
+		<div class="card-header">
+			<h4 class="mb-0">Add Criteria</h4>
+		</div>
+		<div class="card-body">
+			<form method="post" class="row g-3 align-items-center">
+				<div class="col-md-4">
+					<label for="Cutoff1" class="form-label">Cutoff 1:</label>
+					<input type="number" name="Cutoff1" step="0.01" class="form-control" required />
+				</div>
+				<div class="col-md-4">
+					<label for="Cutoff2" class="form-label">Cutoff 2:</label>
+					<input type="number" name="Cutoff2" step="0.01" class="form-control" required />
+				</div>
+				<div class="col-md-4">
+					<label for="PercentageReceived" class="form-label">Percentage Received:</label>
+					<input type="number" name="PercentageReceived" step="0.01" class="form-control" required />
+				</div>
+				<div class="col-12">
+					<button type="submit" asp-page-handler="AddCriteria" class="btn greenButton me-2">Submit</button>
+					<button type="submit" asp-page-handler="Distribute" class="btn yellowButton">Distribute Funds</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="criteriaTable" style="display: none;">
+	<div class="card result-section mb-4">
+		<div class="card-header">
+			<h4>Grant Criteria</h4>
+		</div>
+		<div class="card-body">
+			@if (Model.Criteria.Count > 0)
+			{
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Cutoff 1</th>
+							<th>Cutoff 2</th>
+							<th>Percentage Received</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var criteria in Model.Criteria)
+						{
+							<tr>
+								<td>@criteria.Cutoff1</td>
+								<td>@criteria.Cutoff2</td>
+								<td>@criteria.PercentageReceived</td>
+								<td>
+									<form method="post" asp-page-handler="DeleteCriteria">
+										<input type="hidden" name="cutoff1" value="@criteria.Cutoff1" />
+										<input type="hidden" name="cutoff2" value="@criteria.Cutoff2" />
+										<input type="hidden" name="percentage" value="@criteria.PercentageReceived" />
+										<button type="submit" class="btn" id="redButton">Delete</button>
+									</form>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			}
+			else
+			{
+				<p>No criteria available.</p>
+			}
+		</div>
+	</div>
+</div>
+
+<!-- Survived Grants -->
+<div class="card result-section mb-4">
+	<div class="card-header">
+		<h4>Survived Grants</h4>
+	</div>
+	<div class="card-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-title">@Html.DisplayNameFor(model => model.Grants[0].GrantTitle)</th>
+					<th class="col-score">Final Score</th>
+					<th class="col-amount">@Html.DisplayNameFor(model => model.Grants[0].RSPGAmount)</th>
+					<th class="col-action">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.SurvivedGrants)
+				{
+						<tr>
+							<td class="col-title">@Html.DisplayFor(modelItem => item.GrantTitle)</td>
+							<td class="col-score">
+							@if (Model.GrantAverageScores.ContainsKey(item))
+							{
+								@($"{Model.GrantAverageScores[item]:F2} %")
+							}
+							else
+							{
+								<p>No reviews available</p>
+							}
+							</td>
+							<td class="col-amount">@Html.DisplayFor(modelItem => item.RSPGAmount)</td>
+							<td class="col-action">
+							<a asp-page="./ResultDetails" asp-route-id="@item.GrantID" class="btn purpleButton">Details</a>
+							</td>
+						</tr>
+				}
+			</tbody>
+		</table>
+		<h5>Total Amount Requested: @Model.SurvivedGrants.Sum(g => g.RSPGAmount)</h5>
+	</div>
+</div>
+
+<!-- Rejected Grants -->
+<div class="card result-section mb-4">
+	<div class="card-header">
+		<h4>Rejected Grants</h4>
+	</div>
+	<div class="card-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-title">@Html.DisplayNameFor(model => model.Grants[0].GrantTitle)</th>
+					<th class="col-score">Final Score</th>
+					<th class="col-amount">@Html.DisplayNameFor(model => model.Grants[0].RSPGAmount)</th>
+					<th class="col-action">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.RejectedGrants)
+				{
+						<tr>
+							<td class="col-title">@Html.DisplayFor(modelItem => item.GrantTitle)</td>
+							<td class="col-score">
+							@if (Model.GrantAverageScores.ContainsKey(item))
+							{
+								@($"{Model.GrantAverageScores[item]:F2} %")
+							}
+							else
+							{
+								<p>No reviews available</p>
+							}
+							</td>
+							<td class="col-amount">@Html.DisplayFor(modelItem => item.RSPGAmount)</td>
+							<td class="col-action">
+							<a asp-page="./ResultDetails" asp-route-id="@item.GrantID" class="btn purpleButton">Details</a>
+							</td>
+						</tr>
+				}
+			</tbody>
+		</table>
+		<h5>Total Amount Requested: @Model.RejectedGrants.Sum(g => g.RSPGAmount)</h5>
+	</div>
+</div>
+
+<!-- Grant Tables by Criteria -->
+@foreach (var criteria in Model.Criteria)
+{
+	<div class="card result-section mb-4">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<h4>Grants w/ Criteria:</h4>
+			<div class="ms-auto">
+				<span class="badge bg-dark">Cutoff: @criteria.Cutoff1% - @criteria.Cutoff2%</span>
+
+				@if(criteria.PercentageReceived != null)
+				{
+					<span class="badge bg-dark">Percentage Received: @criteria.PercentageReceived%</span>
+				}
+				else
+				{
+					<span class="badge bg-dark">Percentage Received: Distributed Amount</span>
+				}
+
+			</div>
+		</div>
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="col-title">Grant Title</th>
+						<th class="col-score">Final Score</th>
+						<th class="col-amount">Amount Requested</th>
+						<th class="col-received">Amount Received</th>
+
+						<th class="col-percentage">Percentage Received</th>
+						<th class="col-action">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var grantId in criteria.GrantIds)
+					{
+						var grant = Model.Grants.FirstOrDefault(g => g.GrantID == grantId);
+						if (grant != null)
+						{
+							<tr>
+								<td class="col-title">@grant.GrantTitle</td>
+								<td class="col-score">
+									@if (Model.GrantAverageScores.ContainsKey(grant))
+									{
+										@($"{Model.GrantAverageScores[grant]:F2} %")
+									}
+									else
+									{
+										<p>No reviews available</p>
+									}
+								</td>
+								<td class="col-amount">@grant.RSPGAmount</td>
+								<td class="col-received">@grant.AmountReceived</td>
+								<td class="col-percentage">
+									@{
+										var percentageReceived = grant.RSPGAmount > 0
+										? (grant.AmountReceived / grant.RSPGAmount) * 100
+										: 0;
+									}
+									@($"{percentageReceived:F2} %")
+								</td>
+								<td class="col-action">
+									<a asp-page="./ResultDetails" asp-route-id="@grant.GrantID" class="btn purpleButton">Details</a>
+								</td>
+							</tr>
+						}
+					}
+				</tbody>
+			</table>
+			<h5>Total Amount Received: @Model.Grants.Where(g => criteria.GrantIds.Contains(g.GrantID)).Sum(g => g.AmountReceived)</h5>
+		</div>
+	</div>
+}
+
+
+
+<script>
+	function toggleCriteriaForm() {
+		var criteriaForm = document.getElementById("criteriaForm");
+		var criteriaButton = document.getElementById("addCriteriaButton"); // Select the first button with class 'btn-primary'
+
+		if (criteriaForm.style.display === "none" || criteriaForm.style.display === "") {
+			criteriaForm.style.display = "block"; // Show the form
+			criteriaButton.textContent = "Hide Form"; // Change button text to "Hide Form"
+		} else {
+			criteriaForm.style.display = "none"; // Hide the form
+			criteriaButton.textContent = "Add Criteria"; // Change button text back to "Add Criteria"
+		}
+	}
+
+	function toggleCriteriaTable() {
+		var criteriaTable = document.getElementById("criteriaTable");
+		var toggleButton = document.getElementById("toggleButton");
+
+		if (criteriaTable.style.display === "none") {
+			criteriaTable.style.display = "block";
+			toggleButton.innerText = "Hide Criteria";
+		} else {
+			criteriaTable.style.display = "none";
+			toggleButton.innerText = "Show Criteria";
+		}
+	}
+</script>

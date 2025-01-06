@@ -1,0 +1,50 @@
+﻿@page
+@model CS4760_Project.Pages.Colleges.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" class="btn purpleButton">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.College[0].CollegeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.College[0].DeanId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.College[0].Location)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.College) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CollegeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeanId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                <div class="btn-group" role="group">
+                    <a asp-page="./Edit" asp-route-id="@item.CollegeId" class="btn greenButton btn-sm">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.CollegeId" class="btn yellowButton btn-sm">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.CollegeId" class="btn redButton btn-sm">Delete</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

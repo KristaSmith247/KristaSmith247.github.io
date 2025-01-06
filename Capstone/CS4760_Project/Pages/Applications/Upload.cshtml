@@ -1,0 +1,13 @@
+﻿@page
+@model CS4760_Project.Pages.Applications.UploadModel
+@{
+    ViewData["Title"] = "Upload";
+}
+
+<h1>Upload a file for @Model.MyGrant.GrantTitle</h1>
+<form method="post" enctype="multipart/form-data">
+    <span>Select File:</span>
+    <input type="file" id="addedFiles" name="addedFiles" multiple />
+    <input type="submit" value="Upload" asp-page-handler="Upload" />
+    </form>
+

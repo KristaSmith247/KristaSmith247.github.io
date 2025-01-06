@@ -1,0 +1,218 @@
+﻿@page
+@model CS4760_Project.Pages.Grants.EditModel
+
+@{
+    ViewData["Title"] = "Edit Grant";
+}
+
+<!-- TODO: Due to time constraints, when editing a Grant you cannot change financial requests / files -->
+
+<h1>Edit Grant</h1>
+
+<hr />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Grant.GrantTitle" class="control-label"></label>
+        <input asp-for="Grant.GrantTitle" class="form-control" />
+        <span asp-validation-for="Grant.GrantTitle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.GrantType" class="control-label"></label>
+        <select asp-for="Grant.GrantType" class="form-control" asp-items="Model.GrantTypes">
+            <option value="" selected disabled>@Model.Grant.GrantType</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.GrantSubType" class="control-label"></label>
+        <select asp-for="Grant.GrantSubType" class="form-control" asp-items="Model.SubTypes">
+            <option value="" selected disabled>@Model.Grant.GrantSubType</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.GrantProgram" class="control-label"></label>
+        <select asp-for="Grant.GrantProgram" class="form-control" asp-items="Model.Programs">
+            <option value="" selected disabled>@Model.Grant.GrantProgram</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.PrincipalInvestigator" class="control-label"></label>
+        <input asp-for="Grant.PrincipalInvestigator" class="form-control" />
+        <span asp-validation-for="Grant.PrincipalInvestigator" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.GrantCollegeID" class="control-label"></label>
+        <select asp-for="Grant.GrantCollegeID" class="form-control" asp-items="Model.Colleges">
+            <option value="" selected disabled>@Model.CollegeName</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.GrantDepartmentID" class="control-label"></label>
+        <select asp-for="Grant.GrantDepartmentID" class="form-control" asp-items="Model.Departments">
+            <option value="" selected disabled>@Model.DepartmentName</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.IsUndergraduate" class="control-label"></label>
+        <input type="checkbox" asp-for="Grant.IsUndergraduate" />
+        <span asp-validation-for="Grant.IsUndergraduate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.MailCode" class="control-label"></label>
+        <input asp-for="Grant.MailCode" class="form-control" />
+        <span asp-validation-for="Grant.MailCode" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.StartDate" class="control-label"></label>
+        <input asp-for="Grant.StartDate" class="form-control" type="date" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.EndDate" class="control-label"></label>
+        <input asp-for="Grant.EndDate" class="form-control" type="date" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.Year" class="control-label"></label>
+        <input asp-for="Grant.Year" class="form-control" />
+        <span asp-validation-for="Grant.Year" class="text-danger"></span>
+    </div>
+
+    <div>
+        <p class="h5 mb-3">Financial Requests</p>
+
+        <div class="row">
+            <!-- Personal Resources Card -->
+            <div class="col-md-6 mb-4">
+                <a asp-page="/FinancialRequests/EditPersonalResource" asp-route-id="@Model.Grant.GrantID" class="text-decoration-none">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-secondary text-white">
+                            Personal Resources
+                        </div>
+                        <div class="card-body text-dark">
+                            <p><strong>RSPG Amount:</strong> @Model.PersonalResourceRSPGAmount</p>
+                            <p><strong>Available Amount:</strong> @Model.PersonalResourceAvailableAmount</p>
+                            <p><strong>Total Amount:</strong> @Model.PersonalResourceTotalAmount</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Equipment Card -->
+            <div class="col-md-6 mb-4">
+                <a asp-page="/FinancialRequests/EditFinancialRequest" asp-route-id="@Model.Grant.GrantID" asp-route-source="Equipment" class="text-decoration-none">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-secondary text-white">
+                            Equipment
+                        </div>
+                        <div class="card-body text-dark">
+                            <p><strong>RSPG Amount:</strong> @Model.EquipmentRSPGAmount</p>
+                            <p><strong>Available Amount:</strong> @Model.EquipmentAvailableAmount</p>
+                            <p><strong>Total Amount:</strong> @Model.EquipmentTotalAmount</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Travel Card -->
+            <div class="col-md-6 mb-4">
+                <a asp-page="/FinancialRequests/EditFinancialRequest" asp-route-id="@Model.Grant.GrantID" asp-route-source="Travel" class="text-decoration-none">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-secondary text-white">
+                            Travel
+                        </div>
+                        <div class="card-body text-dark">
+                            <p><strong>RSPG Amount:</strong> @Model.TravelRSPGAmount</p>
+                            <p><strong>Available Amount:</strong> @Model.TravelAvailableAmount</p>
+                            <p><strong>Total Amount:</strong> @Model.TravelTotalAmount</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Other Requests Card -->
+            <div class="col-md-6 mb-4">
+                <a asp-page="/FinancialRequests/EditFinancialRequest" asp-route-id="@Model.Grant.GrantID" asp-route-source="Other" class="text-decoration-none">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-secondary text-white">
+                            Other
+                        </div>
+                        <div class="card-body text-dark">
+                            <p><strong>RSPG Amount:</strong> @Model.OtherRSPGAmount</p>
+                            <p><strong>Available Amount:</strong> @Model.OtherAvailableAmount</p>
+                            <p><strong>Total Amount:</strong> @Model.OtherTotalAmount</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.RSPGAmount" class="control-label"></label>
+        <input asp-for="Grant.RSPGAmount" class="form-control" readonly="readonly" />
+        <span asp-validation-for="Grant.RSPGAmount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.AvailableAmount" class="control-label"></label>
+        <input asp-for="Grant.AvailableAmount" class="form-control" readonly="readonly" />
+        <span asp-validation-for="Grant.AvailableAmount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.TotalAmount" class="control-label"></label>
+        <input asp-for="Grant.TotalAmount" class="form-control" readonly="readonly" />
+        <span asp-validation-for="Grant.TotalAmount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.Description" class="control-label"></label>
+        <textarea asp-for="Grant.Description" class="form-control"></textarea>
+        <span asp-validation-for="Grant.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.ProcedureAndMethod" class="control-label"></label>
+        <textarea asp-for="Grant.ProcedureAndMethod" class="form-control"></textarea>
+        <span asp-validation-for="Grant.ProcedureAndMethod" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Grant.Timeline" class="control-label"></label>
+        <textarea asp-for="Grant.Timeline" class="form-control"></textarea>
+        <span asp-validation-for="Grant.Timeline" class="text-danger"></span>
+    </div>
+
+    @if (Model.Grant.RequiresAnimalOrHumanSubject)
+    {
+        <div class="form-group" style="color: red; font-size:large; font-weight:bold">
+            <label asp-for="Grant.RequiresAnimalOrHumanSubject" class="control-label">
+                This grant requires an animal or human subject.
+            </label>
+        </div>
+    }
+
+    <br />
+
+    <div>
+        <button type="submit" class="btn btn-primary" asp-route-id="@Model.Grant.GrantID">Save</button>
+        <a asp-page="/Grants/Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
