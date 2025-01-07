@@ -1,0 +1,29 @@
+body {
+    background-color: white;
+    text-align: center;
+}
+
+.container-heading {
+    background-color: #533975;
+}
+
+
+.heading-title {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button {
+    border-color: #c4a8f4;
+    background-color: #533975;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+}
+
+a {
+    color: white;
+}
+
+.footer p {
+    color: white;
+}

@@ -1,0 +1,94 @@
+body {
+    background-color: white;
+}
+
+.container-heading {
+    background-color: #492365;
+    color: white;
+    padding: 0.5rem;
+    margin: auto;
+}
+
+.heading {
+    color: white;
+    background-color: #492365;
+    float: left;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.account-heading {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-size: large;
+    float: none;
+}
+
+h1 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button {
+    background-color: #492365;
+    border-color: #70569e;
+    border-style: solid;
+    border-radius: 15%;
+    padding: 1%;
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 1rem;
+}
+
+.logout-button {
+    background-color: #2dbbc4;
+    border-color: #f3f0f4;
+    float: right;
+}
+
+.column {
+    padding: 3rem;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #70569e;
+    float: left;
+    margin: 10px;
+    flex-flow: row wrap;
+}
+
+/* .card-english {
+    padding: 3rem;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #70569e;
+    float: right;
+} */
+.row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: auto;
+    display: flexbox;
+}
+
+.row-words {
+    margin-left: 25%;
+    margin-right: 25%;
+    border: #2dbbc4 solid;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.container-vocab {
+    flex-flow: row wrap;
+}
+
+p {
+    color: black;
+}
+
+.account-heading {
+    color: white;
+}
+
+.error-buttons {
+    align-items: center;
+    padding: 10rem;
+}

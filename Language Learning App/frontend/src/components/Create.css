@@ -1,0 +1,56 @@
+body {
+    background-color: #533975;
+    text-align: center;
+}
+
+
+.container {
+    background-color: #753B6C;
+    padding: 2px;
+    margin-top: 15px;
+    border: 2px solid #c4a8f4;
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 8%;
+    display: block;
+}
+
+h3 {
+    color: white;
+}
+
+label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    padding: 2px;
+}
+
+input {
+    display: inline;
+    border: 2px solid #c4a8f4;
+    padding: 2px;
+}
+
+input[type="radio"] {
+    display: inline;
+    width: 10%;
+}
+
+button {
+    border-color: #c4a8f4;
+    background-color: #533975;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    margin: 2px;
+}
+
+p {
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+}
