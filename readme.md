@@ -11,6 +11,11 @@ The purpose of this project is to demonstrate the use of React, Node.js, Express
 <img src="https://github.com/user-attachments/assets/ccbdc9df-9e4c-4891-a6c9-b8482b4d90b2" width="50%" alt="Login pages"/>
 <img src="https://github.com/user-attachments/assets/7612dd74-14a6-4f81-b4ea-588e191f189f" width="50%" alt="A picture of an employee account"/>
 
+### [Grant Application](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/Capstone)
+See [Grant Application](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/Capstone) for more information including features and screenshots.
+
+
+
 ### [Hangman Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman)
 
 The purpose of this project was to demonstrate the use of React, Node.js, Express and MongoDB via a game of hangman. The project was worked on with <a href="https://github.com/ashiggles" target="_blank" rel="noreferrer">ashiggles</a> as part of a software engineering class. Some of the technical challenges I faced with this project included keeping a list of guessed letters, checking for a win condition, and displaying a high scores table which contains scores for words of the same lengths (which required the use of sessions). See [Hangman Game](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/MERN-Hangman) for more detailed information.
