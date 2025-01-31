@@ -12,7 +12,6 @@ Overall features of the website include:
 
 ![Screenshot 2025-01-31 095816](https://github.com/user-attachments/assets/003579ec-7bc5-41bc-a31c-4cf08011cd36)
 
-![Screenshot 2025-01-31 100114](https://github.com/user-attachments/assets/e27e8ff1-fd3f-4883-a557-a56575b28612)
 ![Screenshot 2025-01-31 100020](https://github.com/user-attachments/assets/2d4b3bad-daa0-4065-ac02-7c6a1cfca4ed)
 
 ![Screenshot 2025-01-31 095923](https://github.com/user-attachments/assets/0ac0ad9a-ac34-46b2-9ae0-9358031536c4)
