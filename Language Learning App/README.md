@@ -3,6 +3,7 @@ Overall features of the website include:
 + account creation
   - unique username required
   - user must enter password twice
+  - password is hashed when account is created
 + login page
   - account verification
 + user account page
