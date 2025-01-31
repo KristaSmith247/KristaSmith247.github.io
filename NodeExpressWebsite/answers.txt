@@ -1,1 +1,0 @@
-<tr><td>Krista</td><td>Smith</td><td>Tacos</td></tr><tr><td>John</td><td>Smith</td><td>Tacos</td></tr><tr><td>Fabian</td><td>Verity</td><td>Chocolate</td></tr><tr><td>undefined</td><td>undefined</td><td>undefined</td></tr>
