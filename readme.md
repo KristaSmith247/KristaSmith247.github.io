@@ -1,7 +1,7 @@
 # Krista Smith
 ### Aspiring Software Engineer
 
-I am currently a computer science student pursuing a Bachelor's degree. I started programming in 2020, and have since earned an Associate of Science degree.
+I recently graduated with a Bachelor's in computer science. I started programming in 2020, and have learning how to create programs that can be intuitive and fun for users.
 
 ## List of Projects
 
