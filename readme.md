@@ -11,7 +11,7 @@ The purpose of this project is to demonstrate the use of React, Node.js, Express
 <img src="https://github.com/user-attachments/assets/ccbdc9df-9e4c-4891-a6c9-b8482b4d90b2" width="50%" alt="Login pages"/>
 <img src="https://github.com/user-attachments/assets/7612dd74-14a6-4f81-b4ea-588e191f189f" width="50%" alt="A picture of an employee account"/>
 
-### [Grant Application](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/Capstone)
+### [Grant Application (Capstone Project)](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/Capstone)
 See [Grant Application](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/Capstone) for more information including features and screenshots.
 
 
