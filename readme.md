@@ -12,7 +12,9 @@ The purpose of this project is to demonstrate the use of React, Node.js, Express
 <img src="https://github.com/user-attachments/assets/7612dd74-14a6-4f81-b4ea-588e191f189f" width="50%" alt="A picture of an employee account"/>
 
 ### [Grant Application (Capstone Project)](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/Capstone)
-See [Grant Application](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/Capstone) for more information including features and screenshots.
+
+The purpose of this project was to create the beginning of a grant application process which will be used by Weber State University. Features for a user include account creation, and a homepage displaying grant applications in progress and under consideration. Features for a committee member include grant approval and a grant grading rubric.
+See [Grant Application](https://github.com/KristaSmith247/KristaSmith247.github.io/tree/main/Capstone) for more information.
 
 
 
