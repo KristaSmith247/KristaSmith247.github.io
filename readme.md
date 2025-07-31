@@ -1,7 +1,7 @@
 # Krista Smith
 ### Aspiring Software Engineer
 
-I recently graduated with a Bachelor's in computer science. I started programming in 2020, and have learning how to create programs that can be intuitive and fun for users.
+I recently graduated with a Bachelor's in computer science. I started programming in 2020, and have enjoyed learning how to create programs that can be intuitive and fun for users!
 
 ## List of Projects
 
